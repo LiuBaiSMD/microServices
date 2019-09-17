@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/micro/go-micro/util/log"
 	"html/template"
-	"myOwnStation/config"
-	"myOwnStation/dao"
-	"myOwnStation/util"
+	"microServices/config"
+	"microServices/dao"
+	"microServices/util"
 	"net/http"
 	"time"
 )

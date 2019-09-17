@@ -13,22 +13,22 @@ func main() {
 	// 注册consul的配置地址
 	consulSource := consul.NewSource(
 		consul.WithAddress("127.0.0.1:8500"),
-		consul.WithPrefix("/micro/config"),
+		consul.WithPrefix("/myOwnStation"),
 		// optionally strip the provided prefix from the keys, defaults to false
 		consul.StripPrefix(true),
 	)
 	// 创建新的配置
 	conf := config.NewConfig()
-	if err := conf.Load(consulSource); err != nil {
+	if err := conf.Load(consulSource); err!=nil {
 		log.Logf("load config errr!", err)
 	}
-	conf.Get("cluster", "consul")
+	conf.Get("config")
 	//if err := conf.Get("cluster", "consul"); err != nil {
 	//	log.Logf("json format err!!!", err)
 	//}
 	//micro config的
 	strMap := make(map[string]string)
-	confData := conf.Get("cluster", "consul").StringMap(strMap)
+	confData := conf.Get("config").StringMap(strMap)
 	fmt.Println(confData)
 	configMap := conf.Map()
 	//fmt.Println(conf)

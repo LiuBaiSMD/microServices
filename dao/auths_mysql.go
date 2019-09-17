@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/jinzhu/gorm"
 	"github.com/micro/go-micro/util/log"
-	"myOwnStation/util"
+	"microServices/util"
 	"time"
 )
 
