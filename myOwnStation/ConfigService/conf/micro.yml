@@ -1,0 +1,39 @@
+user_auth:
+  name: bambooRat.micro.srv.auth
+  address: 127.0.0.1
+  port: 9030
+consul_config:
+  enabled: true
+  docker_host: consul4:8500 # docker环境测试配置
+  host: 127.0.0.1 # 本地测试配置
+  port: 8500
+  kv_location: micro/config/cluster
+jwt:
+  secretKey: W6VjDud2W1kMG3BicbMNlGgI4ZfcoHtMGLWr
+redis:
+  enabled: true
+  docker_conn: redis:6379
+  conn: 127.0.0.1:6379
+  dbNum: 8
+  password:
+  timeout: 3000
+  sentinel:
+    enabled: false
+    master: bookMaster
+  nodes: 127.0.0.1:16379,127.0.0.1:26379,127.0.0.1:36379
+user_srv:
+  name: bambooRat.micro.srv.user
+  address: 127.0.0.1
+  port: 9090
+user_web:
+  name: bambooRat.micro.web.user
+  address: 127.0.0.1
+  port: 10000
+mysql:
+  enabled: true
+  docker_url: root:123456@tcp(mysql_db:3306)/micro_user # docker 测试环境
+  url: root:123456@tcp(127.0.0.1:3306)/micro_user # 本地测试
+  maxIdleConnection: 100
+  maxOpenConnection: 130
+myOwnStation: test
+TokenTTL: 180
