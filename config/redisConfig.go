@@ -7,6 +7,8 @@ type redisConfig struct{
 	DockerHost  string	`json:"docker_host"`
 	RedisUrl 	string 	`json:"redis_url"`
 	RedisConnType string `json:"redis_conn_type"`
+	RedisDB		int   	`json:"redis_db"`
+	RedisPassword string `json:"redis_password"`
 }
 
 type RedisConfig interface {

@@ -63,7 +63,6 @@ func Init() {
 		}
 		break
 	}
-
 	// 侦听文件变动
 	watcher, err := conf.Watch()
 	if err != nil {
@@ -87,7 +86,6 @@ func Init() {
 	}()
 	// 赋值
 	readConfig(conf)
-	log.Log(MyOwnStation, webConf, consulConf, redisConf, mysqlConf)
 	inited = true
 	// 标记已经初始化
 }
@@ -102,37 +100,33 @@ func readConfig(conf config.Config) error{
 		return err
 	}
 	if err := conf.Get("config", "consul_config").Scan(&consulConf); err != nil {
-		log.Logf("总配置加载异常:%s", err)
+		log.Logf("consul配置加载异常:%s", err)
 		return err
 	}
 	if err := conf.Get("config", "redis_config").Scan(&redisConf); err != nil {
-		log.Logf("总配置加载异常:%s", err)
+		log.Logf("redis配置加载异常:%s", err)
 		return err
 	}
 	if err := conf.Get("config", "mysql_config").Scan(&mysqlConf); err != nil {
-		log.Logf("总配置加载异常:%s", err)
+		log.Logf("mysql配置加载异常:%s", err)
 		return err
 	}
 	return nil
 }
 
 func GetWebConfig() webConfig{
-	log.Log("getWebConfig:	", webConf)
 	return webConf
 }
 
 func GetConsulConfig() consulConfig{
-	log.Log("getonsulConfig:	", consulConf)
 	return consulConf
 }
 
 func GetRedisConfig() redisConfig{
-	log.Log("getredisConfig:	", redisConf)
 	return redisConf
 }
 
 func GetMysqlConfig() mysqlConfig{
-	log.Log("getmysqlConfig:	", mysqlConf)
 	return mysqlConf
 }
 

@@ -3,15 +3,17 @@ package handler
 import (
 	"fmt"
 	"github.com/micro/go-micro/util/log"
+	"encoding/json"
 	"html/template"
 	"microServices/config"
 	"microServices/dao"
 	"microServices/util"
 	"net/http"
 	"time"
+	"errors"
 )
 
-var inited bool = false
+var inited  = false
 
 type Auth struct {
 	Id       string `gorm:"default:'peter'"`
@@ -24,18 +26,17 @@ func Init(){
 		log.Log("初始化handler模块！")
 		config.Init()
 		dao.Init(
-			dao.SetRedisConnType(config.GetRedisConfig().RedisConnType),
+			dao.SetRedisPassword(config.GetRedisConfig().RedisPassword),
 			dao.SetRedisUrl(config.GetRedisConfig().RedisUrl),
 			dao.SetMysqlDriveName(config.GetMysqlConfig().MysqlDriveName),
 			dao.SetMysqlURL(config.GetMysqlConfig().MysqlURL),
 			)
-
-
-		config.Init()
+		InitDiscuss()
+		//config.Init()
 		util.Init()
+		inited =true
 		//log.Log("MyOwnStation config:	", config.MyOwnStation)
 	}
-	inited =true
 }
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
@@ -205,4 +206,63 @@ func TokenLogin(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "token登录成功")
 }
 
+func SetDiscuss(w http.ResponseWriter, r *http.Request){
+	//defer r.Body.Close()
+	log.Log("SetDiscuss	! methos:	", r.Method)
+	if r.Method != "POST" {
+		fmt.Fprintln(w, "只接受post请求")
+		log.Log("只接受Post请求！")
+		return
+	}
+	mapdata, err := util.GetBody(r)
+	if err != nil{
+		log.Log("GetBody参数解析错误！")
+		fmt.Fprint(w,err)
+	}
+	chatRoom, ok1 := mapdata["chatRoom"].(string)
+	userId, ok2 := mapdata["userId"].(string)
+	content, ok3 := mapdata["content"].(string)
+	if !util.CheckOKs(ok1, ok2, ok3){
+		fmt.Fprint(w, errors.New("参数解析失败!"))
+		log.Log("参数解析失败!")
+	}
+	member := Discuss{
+		UserId: userId,
+		Content: content,
+	}
+	mashMember, err := json.Marshal(member)
+	if err != nil{
+		fmt.Fprint(w, errors.New("存储member序列化失败！"))
+		return
+	}
 
+	added, err := DiscussZAdd(chatRoom, float64(time.Now().Unix()), mashMember)
+	if err != nil{
+		fmt.Fprint(w, err)
+		return
+	}
+	log.Log("成功插入次数：	", added)
+}
+
+func GetDiscuss(w http.ResponseWriter, r *http.Request){
+	log.Log("GetDiscuss	! methos:	", r.Method)
+	if r.Method != "POST" {
+		fmt.Fprintln(w, "只接受post请求")
+		log.Log("只接受Post请求！")
+		return
+	}
+	mapdata, err := util.GetBody(r)
+	if err != nil {
+		log.Log("GetBody参数解析错误！")
+		fmt.Fprint(w,err)
+	}
+	chatRoom, ok1 := mapdata["chatRoom"].(string)
+	start, ok2 := mapdata["start"].(int)
+	stop, ok3 := mapdata["stop"].(int)
+	if !util.CheckOKs(ok1, ok2, ok3){
+		fmt.Fprint(w, errors.New("参数解析失败!"))
+		log.Log("参数解析失败!", mapdata, chatRoom, start, stop)
+		fmt
+	}
+	DiscussZRevRangeWithScores(chatRoom, start, stop)
+}

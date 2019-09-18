@@ -1,11 +1,13 @@
 package dao
 
 var (
-	defaultMysqlDriveName string = "mysql"
-	defaultMysqlURL string = "root:123456@tcp(127.0.0.1:3306)/micro_user"
-	defaultRedisConnType string = "tcp"
-	defaultRedisUrl string = "localhost:6379"
-	inited bool = false
+	defaultMysqlDriveName  = "mysql"
+	defaultMysqlURL  = "root:123456@tcp(127.0.0.1:3306)/micro_user"
+	defaultRedisConnType  = "tcp"
+	defaultRedisUrl  = "localhost:6379"
+	defaultRedisPassword = ""
+	defaultRedisDB = 0
+	inited  = false
 )
 
 type Option func(o *Options)
@@ -15,6 +17,8 @@ type Options struct {
 	MysqlURL string
 	RedisConnType  string
 	RedisUrl string
+	RedisPassword string
+	RedisDB int
 }
 
 func Init(opts ...Option){
@@ -25,7 +29,7 @@ func Init(opts ...Option){
 		o(&opt)
 	}
 	InitMysql(opt.MysqlDriveName, opt.MysqlURL)
-	InitTokenRedis(opt.RedisConnType, opt.RedisUrl)
+	InitTokenRedis(opt.RedisPassword, opt.RedisUrl, opt.RedisDB)
 	}
 	inited = true
 }
@@ -35,30 +39,41 @@ func defaultOptions(opts *Options){
 	opts.MysqlURL = defaultMysqlURL
 	opts.RedisConnType = defaultRedisConnType
 	opts.RedisUrl = defaultRedisUrl
+	opts.RedisPassword = defaultRedisPassword
 }
 
-func SetMysqlDriveName(n string) Option {
+func SetMysqlDriveName(s string) Option {
 	return func(o *Options) {
-		o.MysqlDriveName = n
+		o.MysqlDriveName = s
 	}
 }
 
-func SetMysqlURL(n string) Option {
+func SetMysqlURL(s string) Option {
 	return func(o *Options) {
-		o.MysqlURL = n
+		o.MysqlURL = s
 	}
 }
 
-func SetRedisConnType(n string) Option {
+func SetRedisConnType(s string) Option {
 	return func(o *Options) {
-		o.RedisConnType = n
+		o.RedisConnType = s
 	}
 }
 
-func SetRedisUrl(n string) Option {
+func SetRedisUrl(s string) Option {
 	return func(o *Options) {
-		o.RedisUrl = n
+		o.RedisUrl = s
 	}
 }
 
+func SetRedisPassword(s string) Option{
+	return func(o *Options){
+		o.RedisPassword = s
+	}
+}
 
+func SetRedisDB(n int) Option{
+	return func(o *Options){
+		o.RedisDB = n
+	}
+}

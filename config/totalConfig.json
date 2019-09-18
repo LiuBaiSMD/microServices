@@ -22,7 +22,9 @@
     "port": 6379,
     "enabled": true,
     "redis_url": "localhost:6379",
-    "redis_conn_type": "tcp"
+    "redis_conn_type": "tcp",
+    "redis_db": 0,
+    "redis_password": ""
   },
 
   "mysql_config": {
