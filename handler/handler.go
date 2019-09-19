@@ -230,7 +230,7 @@ func SetDiscussReq(w http.ResponseWriter, r *http.Request){
 		log.Log("存储评论错误：	", err)
 		fmt.Fprint(w, err)
 	}
-	fmt.Fprint(w, "操作成功1")
+	fmt.Fprint(w, "操作成功!")
 	//cont := Content{
 	//	Context:content,
 	//}
@@ -251,7 +251,7 @@ func SetDiscussReq(w http.ResponseWriter, r *http.Request){
 	//	return
 	//}
 
-	log.Log("成功插入次数：	")
+	log.Log("成功插入!")
 }
 
 func GetDiscussReq(w http.ResponseWriter, r *http.Request){
@@ -272,7 +272,7 @@ func GetDiscussReq(w http.ResponseWriter, r *http.Request){
 	stop := int64(mapdata["stop"].(float64))//mapdata["stop"]
 	//log.Log("oks:	", ok2, ok3)
 	//log.Logf("%T %T", start, stop)
-	log.Log(chatRoom, start, stop)
+	//log.Log(chatRoom, start, stop)
 	if !util.CheckOKs(ok1){
 		//log.Log(ok1,)
 		fmt.Fprint(w, errors.New("参数解析失败!"))
@@ -288,9 +288,9 @@ func GetDiscussReq(w http.ResponseWriter, r *http.Request){
 	//	//fmt.Println(v.UserId, ": ", v.Content, "\n")
 	//}
 	//log.Log(res)
-	for k, v := range res{
-		log.Log(k, ": ", v)
-	}
+	//for k, v := range res{
+	//	log.Log(k, ": ", v)
+	//}
 	fmt.Fprint(w, res)
 }
 

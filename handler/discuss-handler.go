@@ -93,7 +93,7 @@ func setDiscuss(chatRoom, userId , context string, nowStamp float64)error{
 }
 
 func discussZAdd(chatRoom string, score float64, Member interface{})(int64, error){
-	log.Log(chatRoom, score, Member)
+	//log.Log(chatRoom, score, Member)
 	z := redis.Z{
 		Score:score,
 		Member:Member,
@@ -140,9 +140,9 @@ func discussOtherZAdd(preUserId, preTime, userId, chatRoom, context string)error
 		return err
 	}
 	DiscussKey := preUserId + ":" + preTime
-	log.Log("chatroomText:	", getChatRoomText(chatRoom), DiscussKey)
+	//log.Log("chatroomText:	", getChatRoomText(chatRoom), DiscussKey)
 	dis, err := discussRdsConn.HGet(getChatRoomText(chatRoom), DiscussKey).Result()
-	log.Log("dis:	", dis)
+	//log.Log("dis:	", dis)
 	if err !=nil{
 		return errors.New("读取评论错误！")
 	}
