@@ -225,7 +225,8 @@ func SetDiscussReq(w http.ResponseWriter, r *http.Request){
 		fmt.Fprint(w, errors.New("参数解析失败!"))
 		log.Log("参数解析失败!")
 	}
-	if err := setDiscuss(chatRoom, userId, content);err!=nil{
+	nowStamp := float64(time.Now().Unix())
+	if err := setDiscuss(chatRoom, userId, content, nowStamp);err!=nil{
 		log.Log("存储评论错误：	", err)
 		fmt.Fprint(w, err)
 	}
@@ -253,9 +254,8 @@ func SetDiscussReq(w http.ResponseWriter, r *http.Request){
 	log.Log("成功插入次数：	")
 }
 
-func GetDiscuss(w http.ResponseWriter, r *http.Request){
+func GetDiscussReq(w http.ResponseWriter, r *http.Request){
 	//log.Log("GetDiscuss	! methos:	", r.Method)
-	log.Log("\n")
 	if r.Method != "POST" {
 		fmt.Fprintln(w, "只接受post请求")
 		log.Log("只接受Post请求！")
@@ -292,4 +292,26 @@ func GetDiscuss(w http.ResponseWriter, r *http.Request){
 		log.Log(k, ": ", v)
 	}
 	fmt.Fprint(w, res)
+}
+
+func DiscussOtherReq(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		fmt.Fprintln(w, "只接受post请求")
+		log.Log("只接受Post请求！")
+		return
+	}
+	mapdata, err := util.GetBody(r)
+	if err != nil {
+		log.Log("GetBody参数解析错误！")
+		fmt.Fprint(w,err)
+	}
+	preUserId, _ := mapdata["preUserId"].(string)
+	preTime, _ := mapdata["preTime"].(string)
+	userId, _ := mapdata["userId"].(string)
+	chatRoom, _ := mapdata["chatRoom"].(string)
+	context, _ := mapdata["context"].(string)
+	if err1 := discussOtherZAdd(preUserId, preTime, userId, chatRoom, context);err1 != nil{
+		fmt.Fprint(w, err1)
+	}
+	fmt.Fprint(w, "操作成功！")
 }

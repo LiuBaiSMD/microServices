@@ -53,7 +53,7 @@ func InitDiscuss(){
 			dao.SetMysqlURL(config.GetMysqlConfig().MysqlURL),
 		)
 		c := ".."
-		for i:=0; i<3; i++{
+		for i:=0; i<1; i++{
 			log.Log("正在初始化redis."+ c)
 			c = c + ".."
 			time.Sleep(time.Second)
@@ -67,10 +67,10 @@ func InitDiscuss(){
 	}
 }
 
-func setDiscuss(chatRoom, userId , content string)error{
+func setDiscuss(chatRoom, userId , context string, nowStamp float64)error{
 	stampSTR := strconv.FormatInt(time.Now().Unix(), 10)
 	cont := Content{
-		Context:content,
+		Context:context,
 	}
 	member := Discuss{
 		UserId: userId,
@@ -81,7 +81,7 @@ func setDiscuss(chatRoom, userId , content string)error{
 		log.Log("存储member序列化失败！")
 		return errors.New("存储member序列化失败！")
 	}
-	_, err1 := discussZAdd(chatRoom, float64(time.Now().Unix()), mashMember)
+	_, err1 := discussZAdd(chatRoom, nowStamp, mashMember) //float64(time.Now().Unix())
 	if err1 != nil{
 		log.Log(err1)
 		return err1
@@ -132,4 +132,31 @@ func DiscussZRevRangeWithScores(chatRoom string, start , stop int64)([]DiscussRe
 
 func getChatRoomText(chatRoom string) string{
 	return chatRoom + "text"
+}
+
+func discussOtherZAdd(preUserId, preTime, userId, chatRoom, context string)error{
+	nowStamp := time.Now().Unix()
+	if err:= setDiscuss(chatRoom, userId, context, float64(nowStamp));err!=nil{
+		return err
+	}
+	DiscussKey := preUserId + ":" + preTime
+	log.Log("chatroomText:	", getChatRoomText(chatRoom), DiscussKey)
+	dis, err := discussRdsConn.HGet(getChatRoomText(chatRoom), DiscussKey).Result()
+	log.Log("dis:	", dis)
+	if err !=nil{
+		return errors.New("读取评论错误！")
+	}
+	var contentResult Content
+	json.Unmarshal([]byte(dis), &contentResult)
+	nowStampSTR := strconv.FormatInt(nowStamp, 10)
+	contentResult.SonDiscuss = append(contentResult.SonDiscuss, Discuss{
+		UserId:userId,
+		DiscussKey:nowStampSTR,
+	})
+	contentResultMash,_ := json.Marshal(contentResult)
+	ifOK, err := discussRdsConn.HSet(getChatRoomText(chatRoom), preUserId + ":" + preTime, contentResultMash).Result()
+	if !ifOK || err !=nil{
+		return err
+	}
+	return nil
 }
