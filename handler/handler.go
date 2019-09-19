@@ -3,7 +3,6 @@ package handler
 import (
 	"fmt"
 	"github.com/micro/go-micro/util/log"
-	"encoding/json"
 	"html/template"
 	"microServices/config"
 	"microServices/dao"
@@ -206,9 +205,9 @@ func TokenLogin(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "token登录成功")
 }
 
-func SetDiscuss(w http.ResponseWriter, r *http.Request){
+func SetDiscussReq(w http.ResponseWriter, r *http.Request){
 	//defer r.Body.Close()
-	log.Log("SetDiscuss	! methos:	", r.Method)
+	//log.Log("SetDiscuss	! methos:	", r.Method)
 	if r.Method != "POST" {
 		fmt.Fprintln(w, "只接受post请求")
 		log.Log("只接受Post请求！")
@@ -226,26 +225,37 @@ func SetDiscuss(w http.ResponseWriter, r *http.Request){
 		fmt.Fprint(w, errors.New("参数解析失败!"))
 		log.Log("参数解析失败!")
 	}
-	member := Discuss{
-		UserId: userId,
-		Content: content,
-	}
-	mashMember, err := json.Marshal(member)
-	if err != nil{
-		fmt.Fprint(w, errors.New("存储member序列化失败！"))
-		return
-	}
-
-	added, err := DiscussZAdd(chatRoom, float64(time.Now().Unix()), mashMember)
-	if err != nil{
+	if err := setDiscuss(chatRoom, userId, content);err!=nil{
+		log.Log("存储评论错误：	", err)
 		fmt.Fprint(w, err)
-		return
 	}
-	log.Log("成功插入次数：	", added)
+	fmt.Fprint(w, "操作成功1")
+	//cont := Content{
+	//	Context:content,
+	//}
+	//stampSTR := strconv.FormatInt(time.Now().Unix(), 10)
+	//member := Discuss{
+	//	UserId: userId,
+	//	DiscussKey: stampSTR,
+	//}
+	//mashMember, err := json.Marshal(member)
+	//if err != nil{
+	//	fmt.Fprint(w, errors.New("存储member序列化失败！"))
+	//	return
+	//}
+	//
+	//added, err := DiscussZAdd(chatRoom, float64(time.Now().Unix()), mashMember)
+	//if err != nil{
+	//	fmt.Fprint(w, err)
+	//	return
+	//}
+
+	log.Log("成功插入次数：	")
 }
 
 func GetDiscuss(w http.ResponseWriter, r *http.Request){
-	log.Log("GetDiscuss	! methos:	", r.Method)
+	//log.Log("GetDiscuss	! methos:	", r.Method)
+	log.Log("\n")
 	if r.Method != "POST" {
 		fmt.Fprintln(w, "只接受post请求")
 		log.Log("只接受Post请求！")
@@ -256,13 +266,30 @@ func GetDiscuss(w http.ResponseWriter, r *http.Request){
 		log.Log("GetBody参数解析错误！")
 		fmt.Fprint(w,err)
 	}
-	chatRoom, ok1 := mapdata["chatRoom"].(string)
-	start, ok2 := mapdata["start"].(int)
-	stop, ok3 := mapdata["stop"].(int)
-	if !util.CheckOKs(ok1, ok2, ok3){
+	//start
+	chatRoom, ok1 := mapdata["chatRoom"].(string)  //strconv.FormatInt
+	start := int64(mapdata["start"].(float64))
+	stop := int64(mapdata["stop"].(float64))//mapdata["stop"]
+	//log.Log("oks:	", ok2, ok3)
+	//log.Logf("%T %T", start, stop)
+	log.Log(chatRoom, start, stop)
+	if !util.CheckOKs(ok1){
+		//log.Log(ok1,)
 		fmt.Fprint(w, errors.New("参数解析失败!"))
 		log.Log("参数解析失败!", mapdata, chatRoom, start, stop)
-		fmt
 	}
-	DiscussZRevRangeWithScores(chatRoom, start, stop)
+	res, err := DiscussZRevRangeWithScores(chatRoom, start, stop)
+	if err != nil{
+		fmt.Fprint(w, err)
+		return
+	}
+	//for _, v :=range res{
+	//	fmt.Println(v.Time)
+	//	//fmt.Println(v.UserId, ": ", v.Content, "\n")
+	//}
+	//log.Log(res)
+	for k, v := range res{
+		log.Log(k, ": ", v)
+	}
+	fmt.Fprint(w, res)
 }

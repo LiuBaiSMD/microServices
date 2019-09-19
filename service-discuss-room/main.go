@@ -46,7 +46,7 @@ func main() {
 	); err != nil {
 		log.Fatal(err)
 	}
-	service.HandleFunc("/discussSub", handler.SetDiscuss)
+	service.HandleFunc("/discussSub", handler.SetDiscussReq)
 	service.HandleFunc("/discussGet", handler.GetDiscuss)
 	// 注册登录接口
 	if err := service.Run(); err != nil {
