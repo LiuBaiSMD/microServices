@@ -13,7 +13,7 @@ var sqlDB *gorm.DB
 type Auth struct {
 	Id       int 	`gorm:"AUTO_INCREMENT;primary_key;"`
 	UserId	 string `gorm:"column:userid;"`
-	Password string	`gorm:"column:password"`
+	Password string	`gorm:"column:password"` 
 	Name	 string
 	PhoneNum int	`gorm:"column:phoneNum"`
 	Age 	 int
