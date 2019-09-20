@@ -4,9 +4,9 @@ import (
 	"github.com/micro/cli"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/util/log"
-	"microServices/service-auth/handler"
-	"microServices/service-auth/model"
-	s "microServices/proto/auth-proto"
+	"service-auth/handler"
+	"service-auth/model"
+	s "github.com/LiuBaiSMD/microServices/proto/auth-proto"
 )
 
 var (
