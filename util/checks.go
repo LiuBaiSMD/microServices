@@ -55,6 +55,17 @@ func CheckIfInAllowed(password string) error{
 	return nil
 }
 
+func CheckReqAllowed(rMethod string, AllowedMethods ...string)bool{
+	for _,v := range AllowedMethods{
+		log.Log(v)
+		if v == rMethod{
+			return true
+		}
+	}
+
+	return false
+}
+
 func GetAllowedPassword()string{
 	return allowedPassword
 }
