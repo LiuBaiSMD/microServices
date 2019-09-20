@@ -13,8 +13,8 @@ github.com/LiuBaiSMD/microServices/config v0.0.0-20190920084643-42380a544bfd h1:
 github.com/LiuBaiSMD/microServices/config v0.0.0-20190920084643-42380a544bfd/go.mod h1:8ULEuVsF4enMvyf/n9ll8xCBUBBTJUqkUdecsd65usc=
 github.com/LiuBaiSMD/microServices/dao v0.0.0-20190920084643-42380a544bfd h1:omeH981zYjqpSm2+d7aKBDRJtfuutVdqzmaUC0J0m78=
 github.com/LiuBaiSMD/microServices/dao v0.0.0-20190920084643-42380a544bfd/go.mod h1:gjUJAAFms5inRUW6rtrOUbYqignRfVn2yx10fTylw0A=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20190920083225-640a37f0b339 h1:Dw/jODkKQ2tWmcla9fYC1zSGxnhhnuO9cBnw3FrVkGk=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20190920083225-640a37f0b339/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
+github.com/LiuBaiSMD/microServices/util v0.0.0-20190920084643-42380a544bfd h1:jF/5D05KbK/r+0genILgfds5NsRI7PPxEHrS110rVmI=
+github.com/LiuBaiSMD/microServices/util v0.0.0-20190920084643-42380a544bfd/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
 github.com/Microsoft/go-winio v0.4.13/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/go-winio v0.4.14/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/hcsshim v0.8.6/go.mod h1:Op3hHsoHPAvb6lceZHDtd9OkTew38wNoXnJs8iY7rUg=
@@ -328,7 +328,6 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/technoweenie/multipartstreamer v1.0.1/go.mod h1:jNVxdtShOxzAsukZwTSw6MDx5eUJoiEBsSvzDU9uzog=
 github.com/tv42/httpunix v0.0.0-20150427012821-b75d8614f926/go.mod h1:9ESjWnEqriFuLhtthL60Sar/7RFoluCcXsuvEwTV5KM=
 github.com/xanzy/ssh-agent v0.2.1/go.mod h1:mLlQY/MoOhWBj+gOGMQkOeiEvkx+8pJSI+0Bx9h2kr4=
-github.com/xuyiwenak/bambooRat v1.1.0 h1:BDirh3za+ShbVWI7eranezmfRBpr6z9VBWrezXSQ5Vc=
 go.opencensus.io v0.20.1/go.mod h1:6WKK9ahsWS3RSO+PY9ZHZUfv2irvY6gN279GOPZjmmk=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=

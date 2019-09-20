@@ -46,7 +46,7 @@ func Init() {
 	// 先加载基础配置
 	//appPath, _ := filepath.Abs(filepath.Dir(filepath.Join("../", string(filepath.Separator))))
 	var configs []string
-	if err := FindFile("totalConfig.json", "..", &configs);err != nil{
+	if err := FindFile("totalConfig.json", ".", &configs);err != nil{
 		log.Log("寻找配置文件失败！")
 		return
 	}

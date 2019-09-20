@@ -3,7 +3,9 @@ module github.com/LiuBaiSMD/microServices
 go 1.12
 
 require (
-	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
+	github.com/LiuBaiSMD/microServices/config v0.0.0-20190920084643-42380a544bfd
+	github.com/LiuBaiSMD/microServices/dao v0.0.0-20190920084643-42380a544bfd
+	github.com/LiuBaiSMD/microServices/util v0.0.0-20190920083225-640a37f0b339
 	github.com/go-redis/redis v6.15.5+incompatible
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/gorilla/websocket v1.4.1
