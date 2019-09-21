@@ -25,11 +25,15 @@ func Init() {
 	config.Init()
 	redisConfig := config.GetRedisConfig()
 	// 打开才加载
-	if redisConfig != nil {
+	if true  {
 
 		log.Log("初始化Redis...")
 		log.Log("初始化Redis，普通模式...")
-		initSingle(redisConfig)
+		client = redis.NewClient(&redis.Options{
+			Addr:     config.GetRedisConfig().GetURL(),
+			Password: config.GetRedisConfig().GetPassword(), // no password set
+			DB:       config.GetRedisConfig().GetDB(),    // use default DB
+		})
 
 		log.Log("初始化Redis，检测连接...")
 
@@ -48,13 +52,6 @@ func GetRedis() *redis.Client {
 	return client
 }
 
-func initSingle(redisConfig config.RedisConfig) {
-	client = redis.NewClient(&redis.Options{
-		Addr:     redisConfig.GetURL(),
-		Password: redisConfig.GetPassword(), // no password set
-		DB:       redisConfig.GetDB(),    // use default DB
-	})
-}
 
 //func initSentinel(redisConfig config.RedisConfig) {
 	//	client = redis.NewFailoverClient(&redis.FailoverOptions{
