@@ -30,7 +30,6 @@ func Init(){
 			dao.SetMysqlURL(config.GetMysqlConfig().MysqlURL),
 			)
 		InitDiscuss()
-		//config.Init()
 		util.Init()
 		inited =true
 		//log.Log("MyOwnStation config:	", config.MyOwnStation)

@@ -33,3 +33,15 @@ func (c redisConfig) GetDockerHost() string {
 func (c redisConfig) GetEnabled() bool {
 	return c.Enabled
 }
+
+func (c redisConfig) GetPassword() string{
+	return c.RedisPassword
+}
+
+func (c redisConfig) GetURL() string{
+	return c.RedisUrl
+}
+
+func (c redisConfig) GetDB() int{
+	return c.RedisDB
+}
