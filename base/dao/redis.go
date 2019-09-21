@@ -23,7 +23,7 @@ func Init() {
 		return
 	}
 	config.Init()
-	redisConfig := config.GetRedisConfig()
+	//redisConfig := config.GetRedisConfig()
 	// 打开才加载
 	if true  {
 
