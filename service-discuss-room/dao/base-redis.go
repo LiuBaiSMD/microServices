@@ -10,7 +10,7 @@ import (
 
 var rdsConn *redis.Client
 
-func InitTokenRedis(Password, redisUrl string, DB int) *redis.Client {
+func InitRedis(Password, redisUrl string, DB int) *redis.Client { //InitTokenRedis
 	rdsConn = redis.NewClient(&redis.Options{
 		Addr:     redisUrl,
 		Password: Password, // no password set

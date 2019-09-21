@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 	"github.com/micro/go-micro/util/log"
-	"microServices/proto/auth-proto"
+	"microServices/proto/auth"
 	"strconv"
 	"service-auth/model/access"
 )

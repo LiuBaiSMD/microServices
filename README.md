@@ -4,35 +4,37 @@
 ```
 
 ```markdown
-文件目录
 .
 ├── README.md               项目说明
 ├── config                  各类型配置存储模块
-├── dao                     数据库操作模块
-├── go.mod                  
-├── go.sum                  
-├── handler                 逻辑处理模块
-├── html                    html管理模块
-├── service-auth            用户登录token验证服务
+├── go.mod
+├── go.sum
+├── proto                   各项目的proto库
+├── service-auth            登录token的rpc服务（doing）
 ├── service-config-push     配置上传以及读取服务
-├── service-web             web 请求处理服务 
+├── service-discuss-room    web 讨论功能聊天室
+├── service-web             web 用户服务
 └── util                    工具集
 ```
 
-### ConfigService consul配置上传服务
-```
+### service-config-push consul配置上传服务
+```markdown
 1.配置上传
-cd ConfigService
+cd service-config-push
 go run main.go loader.go  
 
-2.配置读取
+2.配置读取测试
 go client.go
 ```
-### WebService 请求处理服务
+### service-web 用户服务
 
-```
-cd WebService
+```markdown
+cd service-web
 go run main.go plugin.go
-
 ```
 
+### service-discuss-room 讨论功能聊天室服务
+```markdown
+cd service-discuss-room
+go run main.go plugin.go  
+```

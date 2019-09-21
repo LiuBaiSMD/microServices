@@ -5,7 +5,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/micro/go-micro/util/log"
 	"github.com/LiuBaiSMD/microServices/config"
-	"github.com/LiuBaiSMD/microServices/dao"
+	"service-discuss-room/dao"
 	"github.com/LiuBaiSMD/microServices/util"
 	"time"
 	"strconv"

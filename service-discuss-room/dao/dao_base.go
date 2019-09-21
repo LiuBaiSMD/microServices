@@ -29,7 +29,7 @@ func Init(opts ...Option){
 		o(&opt)
 	}
 	InitMysql(opt.MysqlDriveName, opt.MysqlURL)
-	InitTokenRedis(opt.RedisPassword, opt.RedisUrl, opt.RedisDB)
+		InitRedis(opt.RedisPassword, opt.RedisUrl, opt.RedisDB)
 	}
 	inited = true
 }
