@@ -1,4 +1,4 @@
-module github.com/LiuBaiSMD/microServices/base/config
+module github.com/LiuBaiSMD/microServices/base
 
 go 1.12
 

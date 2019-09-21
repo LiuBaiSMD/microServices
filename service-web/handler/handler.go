@@ -2,7 +2,7 @@ package handler
 
 import (
 	"fmt"
-	"github.com/LiuBaiSMD/microServices/config"
+	"github.com/LiuBaiSMD/microServices/base/config"
 	"github.com/LiuBaiSMD/microServices/util"
 	"github.com/micro/go-micro/util/log"
 	"html/template"
