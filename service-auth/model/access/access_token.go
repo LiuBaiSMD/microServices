@@ -5,7 +5,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/micro/go-micro/broker"
 	"github.com/micro/go-micro/util/log"
-	"tyweiqu/base/config"
+	"github.com/LiuBaiSMD/microServices/base/config"
 	"time"
 )
 

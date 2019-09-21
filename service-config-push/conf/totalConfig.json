@@ -34,5 +34,9 @@
     "enabled": true,
     "mysql_drive_name": "mysql",
     "mysql_url": "root:123456@tcp(127.0.0.1:3306)/micro_user"
+  },
+
+  "jwt_config": {
+    "secret_key": "W6VjDud2W1kMG3BicbMNlGgI4ZfcoHtMGLWr"
   }
 }

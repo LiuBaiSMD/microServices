@@ -6,7 +6,7 @@ import (
 	"github.com/micro/go-micro/util/log"
 	"service-auth/handler"
 	"service-auth/model"
-	s "github.com/LiuBaiSMD/microServices/proto/auth-proto"
+	s "github.com/LiuBaiSMD/microServices/proto/auth"
 )
 
 var (

@@ -3,7 +3,7 @@ package access
 import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	"tyweiqu/base/config"
+	"github.com/LiuBaiSMD/microServices/base/config"
 	"time"
 )
 

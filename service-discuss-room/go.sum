@@ -11,8 +11,12 @@ github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym
 github.com/DataDog/datadog-go v2.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/LiuBaiSMD/microServices/base v0.0.0-20190921072137-63fdc40a4622 h1:Vjrqj2Dcl781A8Xin2Q+IauRDzmHW/JDp0K1KM7kr0o=
 github.com/LiuBaiSMD/microServices/base v0.0.0-20190921072137-63fdc40a4622/go.mod h1:ftWYPGvd658WmoJmbfJEWTkKECJV9khhCEl8BFIIy24=
+github.com/LiuBaiSMD/microServices/base v0.0.0-20190921081405-65aae0e205be h1:gft3Z+1EQ1vmSgd7qneTcCKBsmaK0u2v69kknEZW/Mw=
+github.com/LiuBaiSMD/microServices/base v0.0.0-20190921081405-65aae0e205be/go.mod h1:ftWYPGvd658WmoJmbfJEWTkKECJV9khhCEl8BFIIy24=
 github.com/LiuBaiSMD/microServices/util v0.0.0-20190921072137-63fdc40a4622 h1:RgGab3u8KTjE2UA4Irq5beERG/Vgiic0strIQPQeplw=
 github.com/LiuBaiSMD/microServices/util v0.0.0-20190921072137-63fdc40a4622/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
+github.com/LiuBaiSMD/microServices/util v0.0.0-20190921081405-65aae0e205be h1:dq9wdpvbPwSWtvGExWDMvsnBAevNg+s/4JknzoIIt9g=
+github.com/LiuBaiSMD/microServices/util v0.0.0-20190921081405-65aae0e205be/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
 github.com/Microsoft/go-winio v0.4.13/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/go-winio v0.4.14/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/hcsshim v0.8.6/go.mod h1:Op3hHsoHPAvb6lceZHDtd9OkTew38wNoXnJs8iY7rUg=

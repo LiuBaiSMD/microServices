@@ -3,7 +3,7 @@ package access
 import (
 	"fmt"
 	r "github.com/go-redis/redis"
-	"tyweiqu/base/redis"
+	redis "github.com/LiuBaiSMD/microServices/base/dao"
 	"sync"
 )
 
