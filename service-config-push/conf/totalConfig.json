@@ -22,6 +22,7 @@
     "port": 6379,
     "enabled": true,
     "redis_url": "localhost:6379",
+    "docker_redis_url": "redis:6379",
     "redis_conn_type": "tcp",
     "redis_db": 0,
     "redis_password": ""
@@ -33,7 +34,8 @@
     "port": 3306,
     "enabled": true,
     "mysql_drive_name": "mysql",
-    "mysql_url": "root:123456@tcp(127.0.0.1:3306)/micro_user"
+    "mysql_url": "root:123456@tcp(127.0.0.1:3306)/micro_user",
+    "docker_mysql_url": "root:123456@tcp(mysql_db:3306)/micro_user"
   },
 
   "jwt_config": {
