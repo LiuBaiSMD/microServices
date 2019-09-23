@@ -50,12 +50,11 @@ func (s *service) MakeAccessToken(subject *Subject) (ret string, err error) {
 }
 
 // GetCachedAccessToken 获取token
-func (s *service) GetCachedAccessToken(subject *Subject) (ret string, err error) {
+func (s *service) GetUserAccessToken(subject *Subject) (ret string, err error) {
 	ret, err = s.getTokenFromCache(subject)
 	if err != nil {
 		return "", fmt.Errorf("[GetCachedAccessToken] 从缓存获取token失败，err: %s", err)
 	}
-
 	return
 }
 

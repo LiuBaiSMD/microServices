@@ -9,8 +9,12 @@ github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym
 github.com/DataDog/datadog-go v2.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/LiuBaiSMD/microServices/base v0.0.0-20190923094156-258c002fde56 h1:KhENVVpfiKjuAQD4tYtt0RzUyUxcmbwV1RYwqZdUmak=
 github.com/LiuBaiSMD/microServices/base v0.0.0-20190923094156-258c002fde56/go.mod h1:ftWYPGvd658WmoJmbfJEWTkKECJV9khhCEl8BFIIy24=
+github.com/LiuBaiSMD/microServices/base v0.0.0-20190923101423-ce4761f78523 h1:5K0nNdVXMqya7mVAGn7r0E/Wj406i473eng6IbJ874A=
+github.com/LiuBaiSMD/microServices/base v0.0.0-20190923101423-ce4761f78523/go.mod h1:ftWYPGvd658WmoJmbfJEWTkKECJV9khhCEl8BFIIy24=
 github.com/LiuBaiSMD/microServices/proto v0.0.0-20190923094156-258c002fde56 h1:qXpBR2V1T7YhyZTDWIGRb0qAccTGaGQ1gEttIbMLt+c=
 github.com/LiuBaiSMD/microServices/proto v0.0.0-20190923094156-258c002fde56/go.mod h1:pJ/WVzgIcyZ7pUNN/2taBuZOLha2MRxAc/Dcc46XoUI=
+github.com/LiuBaiSMD/microServices/proto v0.0.0-20190923101423-ce4761f78523 h1:/djwFIJurYc3SzEczieCdoJ5xLdhiE/1ULfCrovqLTY=
+github.com/LiuBaiSMD/microServices/proto v0.0.0-20190923101423-ce4761f78523/go.mod h1:pJ/WVzgIcyZ7pUNN/2taBuZOLha2MRxAc/Dcc46XoUI=
 github.com/Microsoft/go-winio v0.4.13/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/go-winio v0.4.14/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/hcsshim v0.8.6/go.mod h1:Op3hHsoHPAvb6lceZHDtd9OkTew38wNoXnJs8iY7rUg=

@@ -3,7 +3,7 @@ package access
 import (
 	"fmt"
 	r "github.com/go-redis/redis"
-	redis "github.com/LiuBaiSMD/microServices/base/dao"
+	"github.com/LiuBaiSMD/microServices/base/dao"
 	"sync"
 )
 
@@ -23,7 +23,7 @@ type Service interface {
 	MakeAccessToken(subject *Subject) (ret string, err error)
 
 	// GetCachedAccessToken 获取缓存的token
-	GetCachedAccessToken(subject *Subject) (ret string, err error)
+	GetUserAccessToken(subject *Subject) (ret string, err error)
 
 	// DelUserAccessToken 清除用户token
 	DelUserAccessToken(token string) (err error)
@@ -45,8 +45,8 @@ func Init() {
 	if s != nil {
 		return
 	}
-
-	ca = redis.GetRedis()
+	dao.Init()
+	ca = dao.GetRedis()
 
 	s = &service{}
 }
