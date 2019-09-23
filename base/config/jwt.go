@@ -15,3 +15,7 @@ func (m defaultJwtConfig) GetSecretKey() string {
 	return m.SecretKey
 }
 
+type jwtConfig struct {
+	SecretKey string `json:"secret_key"`
+
+}

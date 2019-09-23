@@ -25,9 +25,9 @@ func Init(){
 		config.Init()
 		dao.Init(
 			dao.SetRedisPassword(config.GetRedisConfig().RedisPassword),
-			dao.SetRedisUrl(config.GetRedisConfig().RedisUrl),
+			dao.SetRedisUrl(config.GetRedisConfig().GetURL()),
 			dao.SetMysqlDriveName(config.GetMysqlConfig().MysqlDriveName),
-			dao.SetMysqlURL(config.GetMysqlConfig().MysqlURL),
+			dao.SetMysqlURL(config.GetMysqlConfig().GetMysqlURL()),
 			)
 		//config.Init()
 		util.Init()

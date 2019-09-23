@@ -29,7 +29,7 @@ var (
 	consulConf				consulConfig
 	redisConf				redisConfig
 	mysqlConf				mysqlConfig
-	jwtConf					JwtConfig
+	jwtConf					jwtConfig
 )
 
 // Init 初始化配置
@@ -113,7 +113,7 @@ func readConfig(conf config.Config) error{
 		return err
 	}
 	if err := conf.Get("config", "jwt_config").Scan(&jwtConf); err != nil {
-		log.Logf("mysql配置加载异常:%s", err)
+		log.Logf("jwt配置加载异常:%s", err)
 		return err
 	}
 	return nil
