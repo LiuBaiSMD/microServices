@@ -27,7 +27,7 @@ type Service struct{}
 // MakeAccessToken 生成token
 func (s *Service) MakeAccessToken(ctx context.Context, req *auth.Request, rsp *auth.Response) error {
 	log.Log("[MakeAccessToken] 收到创建token请求")
-
+	log.Log(req)
 	token, err := accessService.MakeAccessToken(&access.Subject{
 		ID:   strconv.FormatUint(req.UserId, 10),
 		Name: req.UserName,
@@ -59,5 +59,23 @@ func (s *Service) DelUserAccessToken(ctx context.Context, req *auth.Request, rsp
 		return err
 	}
 
+	return nil
+}
+// GetCachedAccessToken 获取缓存的token
+func (s *Service) GetUserAccessToken(ctx context.Context, req *auth.Request, rsp *auth.Response) error {
+	log.Logf("[GetCachedAccessToken] 获取缓存的token，%d", req.UserId)
+	token, err := accessService.GetUserAccessToken(&access.Subject{
+		ID: strconv.FormatUint(req.UserId, 10),
+	})
+	if err != nil {
+		rsp.Error = &auth.Error{
+			Detail: err.Error(),
+		}
+
+		log.Logf("[GetCachedAccessToken] 获取缓存的token失败，err：%s", err)
+		return err
+	}
+
+	rsp.Token = token
 	return nil
 }

@@ -3,8 +3,8 @@ module service-auth
 go 1.12
 
 require (
-	github.com/LiuBaiSMD/microServices/base v0.0.0-20190923085142-36643c8892e1
-	github.com/LiuBaiSMD/microServices/proto v0.0.0-20190923085142-36643c8892e1
+	github.com/LiuBaiSMD/microServices/base v0.0.0-20190923094156-258c002fde56
+	github.com/LiuBaiSMD/microServices/proto v0.0.0-20190923094156-258c002fde56
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-redis/redis v6.15.5+incompatible
 	github.com/go-sql-driver/mysql v1.4.1
