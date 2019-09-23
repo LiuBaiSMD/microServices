@@ -24,16 +24,6 @@ services:
       - service-config-push
     environment:
       RUN_DOCKER_MODE: "on"
-#  user-srv:
-#    build: ./user-srv
-#    environment:
-#      RUN_DOCKER_MODE: "on"
-#    depends_on:
-#      - mysql_db
-#      - redis
-#      - service-config-push
-#    links:
-#      - mysql_db
   redis:
     image: "redis:latest"
     ports:

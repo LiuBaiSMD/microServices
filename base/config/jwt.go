@@ -11,7 +11,7 @@ type defaultJwtConfig struct {
 }
 
 // GetSecretKey jwt 密钥
-func (m defaultJwtConfig) GetSecretKey() string {
+func (m jwtConfig) GetSecretKey() string {
 	return m.SecretKey
 }
 
