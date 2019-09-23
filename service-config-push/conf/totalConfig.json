@@ -3,14 +3,14 @@
   "token_ttl" : 180,
   "web_config": {
     "host": "127.0.0.1",
-    "docker_host": "webService",
+    "docker_host": "consul2:8500",
     "port": 8080,
     "enabled": true
   },
 
   "consul_config": {
     "host": "127.0.0.1",
-    "docker_host": "consul4",
+    "docker_host": "consul2:8500",
     "port": 8500,
     "enabled": true,
     "kv_location": "myOwnStation/config"

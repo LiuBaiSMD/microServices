@@ -30,6 +30,7 @@ type consulConfig struct {
 	Host       string `json:"host"`
 	Port       int    `json:"port"`
 	KVLocation string `json:"kv_location"`
+	DockerHost	string `json:"docker_host"`
 }
 
 // Init 初始化配置
@@ -83,7 +84,7 @@ func Init() {
 	}else{
 		log.Log("docker模式")
 		var consulService string
-		if err := conf.Get("consul","docker_host").Scan(&consulService); err != nil {
+		if err := conf.Get("consul_config","docker_host").Scan(&consulService); err != nil {
 			panic(err)
 		}
 		consulConfigCenterAddr = consulService

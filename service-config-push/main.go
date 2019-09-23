@@ -42,6 +42,6 @@ func registryOptions(ops *registry.Options) {
 	}else{
 		fmt.Println("docker模式")
 		ops.Timeout = time.Second * 5
-		ops.Addrs = []string{"consul4:8500"}
+		ops.Addrs = []string{":8500"}
 	}
 }

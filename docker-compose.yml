@@ -1,0 +1,76 @@
+version: '3'
+services:
+  service-config-push:
+    build: ./service-config-push
+    depends_on:
+      - consul2
+    environment:
+      RUN_DOCKER_MODE: "on"
+  service-discuss-room:
+    build: ./service-discuss-room
+    depends_on:
+      - consul2
+      - redis
+      - mysql_db
+      - service-config-push
+    environment:
+      RUN_DOCKER_MODE: "on"
+  service-web:
+    build: ./service-web
+    depends_on:
+      - consul2
+      - redis
+      - mysql_db
+      - service-config-push
+    environment:
+      RUN_DOCKER_MODE: "on"
+#  user-srv:
+#    build: ./user-srv
+#    environment:
+#      RUN_DOCKER_MODE: "on"
+#    depends_on:
+#      - mysql_db
+#      - redis
+#      - service-config-push
+#    links:
+#      - mysql_db
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+  mysql_db:
+    image: "mysql:latest"
+    restart: always
+    #command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    volumes:
+      - "${HOME}/mysql/data:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+  consul1:
+    image: consul
+    container_name: node1
+    command: agent -server -bootstrap-expect=1 -node=node1 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+  consul2:
+    image: consul
+    container_name: node2
+    command: agent -retry-join=node1 -node=node2 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui
+    ports:
+      - 8500:8500
+    depends_on:
+      - consul1
+#  consul_node1:
+#    image: consul
+#    container_name: node1
+#    command: agent -server -bootstrap-expect=1 -node=node1 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+#  consul_node2:
+#    image: consul
+#    container_name: node2
+#    command: agent -retry-join=node1 -node=node2 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui
+#    ports:
+#      - 8500:8500
+#    depends_on:
+#      - consul_node1
+
+

@@ -21,7 +21,7 @@ type defaultMyOwnStation struct {
 var (
 	defaultConfigPath       = "myOwnStation" // 默认的仓库地址
 	defaultConsulServerAddr = "localhost:8500"
-	dockerConsulServerAddr = "consul4:8500"
+	dockerConsulServerAddr = "consul2:8500"
 	m                       sync.RWMutex
 	inited                  bool
 	MyOwnStation 			defaultMyOwnStation

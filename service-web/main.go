@@ -63,7 +63,7 @@ func registryOptions(ops *registry.Options) {
 	dockerMode := os.Getenv("RUN_DOCKER_MODE")
 	if dockerMode == "on"{
 		log.Log("docker模式")
-		ops.Addrs = []string{"consul1"}
+		ops.Addrs = []string{"consul2"}
 	}else{
 		log.Log("本地模式")
 		ops.Addrs = []string{"127.0.0.1:8500"}
