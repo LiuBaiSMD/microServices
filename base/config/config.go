@@ -135,7 +135,7 @@ func GetMysqlConfig() mysqlConfig{
 	return mysqlConf
 }
 
-func GetJwtConfig() JwtConfig{
+func GetJwtConfig() jwtConfig{
 	return jwtConf
 }
 
