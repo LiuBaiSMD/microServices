@@ -38,3 +38,15 @@ go run main.go plugin.go
 cd service-discuss-room
 go run main.go plugin.go  
 ```
+
+## docker部署
+```markdown
+使用docker-compose.yml文件将服务一键部署到docker中
+```
+```markdown
+运行步骤
+1.下载安装docker
+2.在每个service项目下使用go mod vendor 拉取依赖代码
+3.docker-compose up  # 一键启动docker服务
+4.docker ps 查看容器运行状态
+```
