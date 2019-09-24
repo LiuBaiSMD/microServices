@@ -24,6 +24,19 @@ services:
       - service-config-push
     environment:
       RUN_DOCKER_MODE: "on"
+  service-auth:
+    build: ./service-auth
+    depends_on:
+      - redis
+      - service-config-push
+    environment:
+      RUN_DOCKER_MODE: "on"
+  service-auth-client:
+    build: ./service-auth-client
+    depends_on:
+      - service-auth
+    environment:
+      RUN_DOCKER_MODE: "on"
   redis:
     image: "redis:latest"
     ports:

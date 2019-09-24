@@ -7,6 +7,9 @@ import (
 	"service-auth/handler"
 	"service-auth/model"
 	s "github.com/LiuBaiSMD/microServices/proto/auth"
+	"github.com/micro/go-micro/registry/consul"
+	"github.com/micro/go-micro/registry"
+	"os"
 )
 
 var (
@@ -19,12 +22,19 @@ func main() {
 	//config.Init()
 
 	// 使用consul注册
-	//micReg := consul.NewRegistry(registryOptions)
+	var consulAddr string
+	dockerMode := os.Getenv("RUN_DOCKER_MODE")
+	if dockerMode == "on"{
+		consulAddr = "consul2:8500"
+	}else{
+		consulAddr = "127.0.0.1:8500"
+	}
+	micReg := consul.NewRegistry(registry.Addrs(consulAddr),)
 
 	// 新建服务
 	service := micro.NewService(
 		micro.Name("tuyoo.micro.srv.auth"),
-		//micro.Registry(micReg),
+		micro.Registry(micReg),
 		micro.Version("latest"),
 	)
 
