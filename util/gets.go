@@ -8,6 +8,7 @@ func GetType(c interface{}) string{
 }
 
 func GetTypes(c ...interface{}) []string{
+	//
 	var res []string
 	for _, k := range c{
 		t := reflect.TypeOf(k).String()

@@ -65,7 +65,3 @@ func CheckReqAllowed(rMethod string, AllowedMethods ...string)bool{
 
 	return false
 }
-
-func GetAllowedPassword()string{
-	return allowedPassword
-}

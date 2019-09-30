@@ -1,0 +1,5 @@
+.DS_Store
+.idea
+*.sh linguist-language=go
+**/vendor
+**/node_modules
