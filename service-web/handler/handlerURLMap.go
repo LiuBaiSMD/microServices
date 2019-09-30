@@ -6,17 +6,30 @@ import (
 	"net/http"
 )
 
-type handlerUrl map[string]func(w http.ResponseWriter, r *http.Request)
+type handlerFuncUrl map[string]func(w http.ResponseWriter, r *http.Request)  //配置handlerFunc表的数据结构
+type handlerUrl map[string]http.Handler
 
-var WebConfig = handlerUrl{
+
+var WebConfig = handlerFuncUrl{
 	"/userlogin/": UserLogin,
 	"/tokenLogin": TokenLogin,
 	"/userregister/": Register,
 	"/changePWD": ChangePWDReq,
 }
 
-func SetHandleFunc(service web.Service, WebConfig handlerUrl){
+var WebHandlerConfig = handlerUrl{
+	"websocket": http.StripPrefix("/websocket/", http.FileServer(http.Dir("html/websocket"))),
+	"changeTest":  http.StripPrefix("/changeTest/", http.FileServer(http.Dir("html/ChangeTest"))),
+}
+
+func SetHandleFunc(service web.Service, WebConfig handlerFuncUrl){
 	for k, v := range WebConfig{
 		service.HandleFunc(k, v)
+	}
+}
+
+func SetHandle(service web.Service, WebHandlerConfig handlerUrl){
+	for k, v := range WebHandlerConfig{
+		service.Handle(k, v)
 	}
 }
