@@ -49,10 +49,11 @@ func main() {
 	// 注册登录接口
 	service.Handle("/websocket/", http.StripPrefix("/websocket/", http.FileServer(http.Dir("html/websocket"))))
 	service.Handle("/changeTest/", http.StripPrefix("/changeTest/", http.FileServer(http.Dir("html/ChangeTest"))))
-	service.HandleFunc("/userlogin/", handler.UserLogin)
-	service.HandleFunc("/userregister/", handler.Register)
-	service.HandleFunc("/changePWD", handler.ChangePWDReq)
-	service.HandleFunc("/tokenLogin", handler.TokenLogin)
+	//service.HandleFunc("/userlogin/", handler.UserLogin)
+	//service.HandleFunc("/userregister/", handler.Register)
+	//service.HandleFunc("/changePWD", handler.ChangePWDReq)
+	//service.HandleFunc("/tokenLogin", handler.TokenLogin)
+	handler.SetHandleFunc(service, handler.WebConfig)
 	if err := service.Run(); err != nil {
 		log.Fatal(err)
 	}

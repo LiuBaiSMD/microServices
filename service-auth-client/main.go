@@ -8,6 +8,7 @@ import (
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-micro/registry/consul"
 	"os"
+	"github.com/micro/go-micro/transport"
 	//"github.com/micro/go-micro/util/log"
 )
 
@@ -25,18 +26,18 @@ func main() {
 			consulAddr,
 		}
 	})
-	//tsp := transport.NewTransport()
-	//l, err := tsp.Listen("127.0.0.1:42313")
+	tsp := transport.NewTransport(transport.Addrs("127.0.0.1:8500"))
+	//l, err := tsp.Dial("127.0.0.1:39707")
 	//if err != nil {
 	//	fmt.Println("Unexpected listen err: %v", err)
 	//}
 	//defer l.Close()
-	// 初始化服务
+	//初始化服务
 	service := micro.NewService(
 		micro.Name("auth-client"),
 		micro.Registry(reg),
 		micro.Version("latest"),
-		//micro.Transport(tsp),
+		micro.Transport(tsp),
 	)
 
 	// 2019年源码有变动默认使用的是mdns面不是consul了

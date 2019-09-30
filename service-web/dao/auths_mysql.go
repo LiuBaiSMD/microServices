@@ -111,7 +111,7 @@ func ChangePWD(userId, password, newPassword string) error {
 		return err
 	}
 	res.Password = newPassword
-	sqlDB.Model(&res).Update("password", newPassword)
+	sqlDB.Model(&res).Where(&res).Update("password", newPassword)
 	return nil
 }
 
