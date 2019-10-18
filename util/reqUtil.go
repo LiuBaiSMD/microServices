@@ -9,6 +9,9 @@ import (
 
 func GetBody(r *http.Request) (map[string]interface{}, error){
 	//将参数解析为 map[string]interface{}型
+	if r.Method != "POST"{
+		return nil, errors.New("请求类型错误，请检查")
+	}
 	ContType  := r.Header["Content-Type"]
 	if ContType[0] == "application/json"{
 		if err:=r.ParseForm();err!=nil{

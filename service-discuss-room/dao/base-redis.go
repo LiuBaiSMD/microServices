@@ -16,7 +16,7 @@ func InitRedis(Password, redisUrl string, DB int) *redis.Client { //InitTokenRed
 		Password: Password, // no password set
 		DB:       DB,  // use default DB
 	})
-
+	rdsConn.BgRewriteAOF()
 	pong, err := rdsConn.Ping().Result()
 	if err != nil{
 		fmt.Println(pong, err)

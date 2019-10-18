@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"service-web/dao"
 	"time"
+	"errors"
 )
 
 var inited  = false
@@ -201,4 +202,17 @@ func TokenLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Fprintln(w, "token登录成功")
+}
+
+func ErrorReport(w http.ResponseWriter, r *http.Request) {
+	log.Log("method:", r.Method) //获取请求的方法
+	r.ParseForm()
+	//请求的是登陆数据，那么执行登陆的逻辑判断
+	r.ParseForm()
+	mapdata, ok := r.Form["info"]
+	if !ok {
+		fmt.Fprintln(w, errors.New("参数请求错误"))
+		return
+	}
+	fmt.Println(mapdata)
 }
