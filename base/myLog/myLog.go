@@ -5,6 +5,7 @@ import (
 	"log"
 	"time"
 	"net/http"
+	"os"
 )
 
 type MyLogger interface {
@@ -13,11 +14,12 @@ type MyLogger interface {
 	Debug(info ...interface{})
 	Heart(info ...interface{})
 	Error(info ...interface{})
+	LogWithFile(fileName, prefix string, info ...interface{})
 }
 var (
 	defaultFileName  = "log.log"
 	dftLogger  = defaultLogger{}
- 	logger *log.Logger
+	logger *log.Logger
 	Logger MyLogger
 	ifInited = false
 	reportURL = "http://localhost:8080/userlogin"
@@ -66,4 +68,15 @@ func report(info ...interface{})error{
 		return err
 	}
 	return nil
+}
+
+func openLogFile(fileName string) (*os.File, error){
+	if _,err :=os.Open(fileName);err!=nil && os.IsNotExist(err){
+		os.Create(fileName)
+	}
+	logFile,err  := os.OpenFile(fileName, os.O_RDWR|os.O_APPEND,0)
+	if err != nil {
+		return nil, err
+	}
+	return logFile, nil
 }

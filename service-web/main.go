@@ -51,9 +51,8 @@ func main() {
 	handler.SetHandle(service, handler.WebHandlerConfig)
 	handler.SetHandleFunc(service, handler.WebConfig)
 	myLog.SetReport(handler.Report)
-	logger := myLog.NewLogger()
-	logger.Debug("test123")
-	logger.Error("我来看看有没有错误!")
+	myLog.Logger.Info("test123")
+	myLog.Logger.Error("我来看看有没有错误!")
 	if err := service.Run(); err != nil {
 		log.Fatal(err)
 	}

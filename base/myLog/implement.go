@@ -2,7 +2,6 @@ package myLog
 
 import (
 	"log"
-	"os"
 	"runtime"
 	"strings"
 )
@@ -11,14 +10,9 @@ type defaultLogger struct {}
 
 func (dfl *defaultLogger)Init() error{
 	//初始化logger,别无他用
-	if _,err :=os.Open(defaultFileName);err!=nil && os.IsNotExist(err){
-		os.Create(defaultFileName)
-	}
-
-	logFile,err  := os.OpenFile(defaultFileName, os.O_RDWR|os.O_APPEND,0)
-	//defer logFile.Close()
-	if err != nil {
-		log.Fatalln("open file error !")
+	logFile,err := openLogFile(defaultFileName)
+	if err != nil{
+		log.Fatalf("日志文件打开失败！")
 	}
 	// 创建一个日志对象
 	logger = log.New(logFile,"[Debug]",log.LstdFlags)
@@ -56,6 +50,19 @@ func (dfl *defaultLogger)Error(info ...interface{}){
 	logger.Println(fileName, line, info)
 }
 
+func (dfl *defaultLogger)LogWithFile(fileName, prefix string, info ...interface{}){
+	logFile, err := openLogFile(fileName)
+	if err != nil{
+		log.Fatalf("日志文件打开失败: ",err.Error())
+	}
+	defer logFile.Close()
+	// 创建一个日志对象
+	fLogger := log.New(logFile,"[Debug]",log.LstdFlags)
+	debugFile, line := getFileName()
+	fLogger.SetPrefix(prefix)
+	fLogger.Println(debugFile, line, info)
+}
+
 func getFileName()(string, int){
 	_, file, line, _ := runtime.Caller(2)
 	fileSplit := strings.Split(file, "/")
@@ -63,3 +70,5 @@ func getFileName()(string, int){
 	//fmt.Println(fileName)
 	return fileName, line
 }
+
+
