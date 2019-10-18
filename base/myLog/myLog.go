@@ -27,20 +27,18 @@ var handler map[string]func(info ...interface{})error
 
 
 func init()  {
-//return
-	ifInited = true
-	dftLogger.Init()
-	go heartBeat()
-	handler = make(map[string]func(info ...interface{})error)
-	handler["report"] = report
+	if !ifInited {
+		dftLogger.Init()
+		//启动心跳
+		go heartBeat()
+		handler = make(map[string]func(info ...interface{})error)
+		handler["report"] = report
+		Logger = &dftLogger
+		ifInited = true
+	}
 }
 
-func NewLogger() MyLogger{
-	return newLogger()
-}
-
-func newLogger() MyLogger{
-	Logger = &dftLogger
+func GetLogger() MyLogger{
 	return Logger
 }
 
@@ -57,6 +55,7 @@ func SetReport(report func(info ...interface{})error){
 }
 
 func SetLogPath(logPath string){
+	//提供外部接口设置log的位置,如不设置则默认存放在脚本执行目录，名为log.log
 	defaultFileName = logPath
 }
 
