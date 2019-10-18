@@ -12,6 +12,7 @@ import (
 	"os"
 	//"github.com/micro/go-web"
 	"service-web/handler"
+	"github.com/LiuBaiSMD/microServices/base/myLog"
 )
 
 
@@ -47,10 +48,12 @@ func main() {
 		log.Fatal(err)
 	}
 	// 注册登录接口
-	//service.Handle("/websocket/", http.StripPrefix("/websocket/", http.FileServer(http.Dir("html/websocket"))))
-	//service.Handle("/changeTest/", http.StripPrefix("/changeTest/", http.FileServer(http.Dir("html/ChangeTest"))))
 	handler.SetHandle(service, handler.WebHandlerConfig)
 	handler.SetHandleFunc(service, handler.WebConfig)
+	myLog.SetReport(handler.Report)
+	logger := myLog.NewLogger()
+	logger.Debug("test123")
+	logger.Error("我来看看有没有错误!")
 	if err := service.Run(); err != nil {
 		log.Fatal(err)
 	}

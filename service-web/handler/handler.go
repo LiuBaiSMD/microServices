@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"github.com/LiuBaiSMD/microServices/base/config"
+	"github.com/LiuBaiSMD/microServices/base/myLog"
 	"github.com/LiuBaiSMD/microServices/util"
 	"github.com/micro/go-micro/util/log"
 	"html/template"
@@ -13,7 +14,7 @@ import (
 )
 
 var inited  = false
-
+var logger  myLog.MyLogger
 type Auth struct {
 	Id       string `gorm:"default:'peter'"`
 	Password string
@@ -23,6 +24,7 @@ type Auth struct {
 func Init(){
 	if !inited{
 		log.Log("初始化handler模块！")
+		myLog.Logger.Info("初始化handler模块!")
 		config.Init()
 		dao.Init(
 			dao.SetRedisPassword(config.GetRedisConfig().RedisPassword),
