@@ -61,10 +61,9 @@ func GetConfig(filePath string)(map[string]interface{}, error){
 		panic(err)
 	}
 	routes := make(map[string]interface{})
-	conf.Scan(&routes)
-	rts := make(map[string]map[string]interface{})
-	for k, v := range routes{
-		rts[k] = v.(map[string]interface{})
+	err := conf.Scan(&routes)
+	if err != nil{
+		return nil, err
 	}
 	return routes, nil
 }
