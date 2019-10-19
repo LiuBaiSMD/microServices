@@ -1,9 +1,11 @@
 package util
 
 import (
+	"github.com/micro/go-micro/config"
 	"github.com/micro/go-micro/config/source"
 	"github.com/micro/go-micro/config/source/file"
 	"github.com/micro/go-micro/config/encoder/json"
+	"github.com/micro/go-micro/util/log"
 	"reflect"
 	"errors"
 )
@@ -25,13 +27,23 @@ func GetMapContent(m map[string]interface{}, path ...string) (interface{}, error
 	//本接口将获取一个map中，按path路径取值，返回一个interface
 	var content interface{}
 	var ok bool
-	for _, v:= range path[0:len(path)-1]{
+	l := len(path)
+	if l ==0 || (l == 1 && path[0]==""){  //当没有填入
+		return m, nil
+	}
+	for k, v:= range path{
+		if k ==l-1{
+			content, ok = m[v]
+			if !ok{
+				return nil, errors.New(" 配置读取错误---> 	" + v)
+			}
+			return content,nil
+		}
 		if m, ok = m[v].(map[string]interface{}); !ok{
-			return nil, errors.New("配置结构错误，请检查！！")
+			return nil, errors.New(" 配置读取错误---> 	" + v)
 		}
 	}
-	content = m[path[len(path)-1]]
-	return content,nil
+	return nil, errors.New("missing map!")
 }
 
 func GetConfig(filePath string)(map[string]interface{}, error){
