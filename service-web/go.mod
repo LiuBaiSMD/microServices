@@ -3,8 +3,8 @@ module service-web
 go 1.12
 
 require (
-	github.com/LiuBaiSMD/microServices/base v0.0.0-20191018100925-f6e44bb5dbd9
-	github.com/LiuBaiSMD/microServices/util v0.0.0-20191018100925-f6e44bb5dbd9
+	github.com/LiuBaiSMD/microServices/base v0.0.0-20191019031325-d8c1b8c94701
+	github.com/LiuBaiSMD/microServices/util v0.0.0-20191019031325-d8c1b8c94701
 	github.com/go-redis/redis v6.15.5+incompatible
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/gorilla/websocket v1.4.1
