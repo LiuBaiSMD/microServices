@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"errors"
 	"github.com/micro/go-micro/util/log"
+	"os"
 )
 
 var allowedPassword string = "1234567890abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+=-<>?,./:;'\"{}[]\\"
@@ -64,4 +65,15 @@ func CheckReqAllowed(rMethod string, AllowedMethods ...string)bool{
 	}
 
 	return false
+}
+
+func CheckPathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
 }
