@@ -12,11 +12,10 @@ func (dfl *defaultLogger)Init() error{
 	//初始化logger,别无他用
 	logFile,err := openLogFile(defaultFileName)
 	if err != nil{
-		log.Fatalf("日志文件打开失败！")
+		log.Fatalf("日志文件打开失败！", defaultFileName)
 	}
 	// 创建一个日志对象
 	logger = log.New(logFile,"[Debug]",log.LstdFlags)
-	//dftLogger := new(defaultLogger)
 	return nil
 }
 
@@ -67,7 +66,6 @@ func getFileName()(string, int){
 	_, file, line, _ := runtime.Caller(2)
 	fileSplit := strings.Split(file, "/")
 	fileName := fileSplit[len(fileSplit)-1]
-	//fmt.Println(fileName)
 	return fileName, line
 }
 

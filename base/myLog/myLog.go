@@ -1,11 +1,12 @@
 package myLog
 
 import (
-	"fmt"
+	"github.com/LiuBaiSMD/microServices/util"
 	"log"
 	"time"
 	"net/http"
 	"os"
+	"strings"
 )
 
 type MyLogger interface {
@@ -17,7 +18,8 @@ type MyLogger interface {
 	LogWithFile(fileName, prefix string, info ...interface{})
 }
 var (
-	defaultFileName  = "log.log"
+	projectConf = "project.json"
+	defaultFileName  string
 	dftLogger  = defaultLogger{}
 	logger *log.Logger
 	Logger MyLogger
@@ -30,6 +32,7 @@ var handler map[string]func(info ...interface{})error
 
 func init()  {
 	if !ifInited {
+		defaultFileName = getDefaultLogFileName()
 		dftLogger.Init()
 		//启动心跳
 		go heartBeat()
@@ -63,7 +66,7 @@ func SetLogPath(logPath string){
 
 func report(info ...interface{})error{
 	rsp, err := http.Get(reportURL)
-	fmt.Println(rsp, err, "   info: ", info)
+	log.Println(rsp, err, "   info: ", info)
 	if err != nil{
 		return err
 	}
@@ -71,12 +74,40 @@ func report(info ...interface{})error{
 }
 
 func openLogFile(fileName string) (*os.File, error){
-	if _,err :=os.Open(fileName);err!=nil && os.IsNotExist(err){
-		os.Create(fileName)
+	s := strings.Split(fileName,"/")
+	file := s[len(s)-1]
+	dirPath := fileName[0:len(fileName)-len(file)]
+	if dirPath != "" { //判断是否存在dirPath
+		err := os.MkdirAll(dirPath , os.ModePerm)
+		if err!=nil{
+			return nil, err
+		}
 	}
-	logFile,err  := os.OpenFile(fileName, os.O_RDWR|os.O_APPEND,0)
+	logFile,err  := os.OpenFile(fileName, os.O_RDWR|os.O_APPEND|os.O_CREATE,0666)
 	if err != nil {
 		return nil, err
 	}
 	return logFile, nil
+}
+
+func GetToday()string{
+	data := time.Now().Format("2006-01-02")
+	return data
+}
+
+func getDefaultLogFileName()string{
+	if ifExist, err := util.CheckPathExists(projectConf);(!ifExist || err !=nil){
+		log.Println("do no find file -----> project.json\ndefault log file ------> yourLog.log ")
+		return "yourLog.log"
+	}else {
+		cfg, err := util.GetConfig(projectConf)
+		if err != nil{
+			panic(err)
+		}
+		name, _ := util.GetMapContent(cfg, "name")
+		logPath, _ := util.GetMapContent(cfg, "logPath")
+		data := util.GetToday()
+		return logPath.(string) + "/" + name.(string) + "/MS-Log-" + data + ".log"
+	}
+
 }

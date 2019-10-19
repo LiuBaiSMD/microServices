@@ -67,3 +67,8 @@ func GetConfig(filePath string)(map[string]interface{}, error){
 	}
 	return routes, nil
 }
+
+func GetToday()string{
+	data := time.Now().Format("2006-01-02")
+	return data
+}
