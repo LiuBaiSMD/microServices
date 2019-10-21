@@ -3,8 +3,8 @@ module service-discuss-room
 go 1.12
 
 require (
-	github.com/LiuBaiSMD/microServices/base v0.0.0-20190923101423-ce4761f78523
-	github.com/LiuBaiSMD/microServices/util v0.0.0-20190923101423-ce4761f78523
+	github.com/LiuBaiSMD/microServices/base v0.0.0-20191021073140-aebb9268c6f9
+	github.com/LiuBaiSMD/microServices/util v0.0.0-20191021073140-aebb9268c6f9
 	github.com/go-redis/redis v6.15.5+incompatible
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/gorilla/websocket v1.4.1
