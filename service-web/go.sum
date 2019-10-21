@@ -9,21 +9,11 @@ github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/DataDog/datadog-go v2.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
-<<<<<<< HEAD
-github.com/LiuBaiSMD/microServices/base v0.0.0-20191019095321-1a33beb31f69 h1:GaLcYii8oSXCIDhzQSnOSgn3P0iF9PIkMzltXfTVaw0=
-github.com/LiuBaiSMD/microServices/base v0.0.0-20191019095321-1a33beb31f69/go.mod h1:arVWKEjRIZeLPaTgg1h80Pcp82xjB/4w2FbLggUoo0Q=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20191019095210-37ae845fd86c h1:1Yqr1AXbkrjKgXrCPV81dgW6sIkVqeZcANcalPndk/8=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20191019095210-37ae845fd86c/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20191019095321-1a33beb31f69 h1:sE8qCesEDHtHJ3okwTZz/y9nsnoxocQIBwdZ/q2DeRk=
+github.com/LiuBaiSMD/microServices/base v0.0.0-20191021072703-754ff2ed1be7 h1:mvB41CUnThePnixGX17ra2MP3NTfPOJEUkpckNNljVo=
+github.com/LiuBaiSMD/microServices/base v0.0.0-20191021072703-754ff2ed1be7/go.mod h1:dYb2GWjiJpUXS+UaYooX4fcC1EuJ2yFwaYwOTRYz+kA=
 github.com/LiuBaiSMD/microServices/util v0.0.0-20191019095321-1a33beb31f69/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
-=======
-github.com/LiuBaiSMD/microServices/base v0.0.0-20191019095210-37ae845fd86c h1:+lQjkIDNiSNH8Vw0ubktTAFNUqqAQpMvhZBfQXvUKCU=
-github.com/LiuBaiSMD/microServices/base v0.0.0-20191019095210-37ae845fd86c/go.mod h1:QhsNNGkx5JcJsA62o45elyLl2U6qC0J5sboZ8RW49vo=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20191019094619-5bbcc1253a49 h1:+gU2Vj58ZIzEz+eVjSSO1JiMWGWigVdwTEMyaqASI4g=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20191019094619-5bbcc1253a49/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20191019095210-37ae845fd86c h1:1Yqr1AXbkrjKgXrCPV81dgW6sIkVqeZcANcalPndk/8=
-github.com/LiuBaiSMD/microServices/util v0.0.0-20191019095210-37ae845fd86c/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
->>>>>>> 1a33beb31f69e1c873779402405e86a666cb62ee
+github.com/LiuBaiSMD/microServices/util v0.0.0-20191021072703-754ff2ed1be7 h1:2IE1KW7aZOIjRB7EtDk+HGr4x/HFZyPdr00uoAMdCKw=
+github.com/LiuBaiSMD/microServices/util v0.0.0-20191021072703-754ff2ed1be7/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
 github.com/Microsoft/go-winio v0.4.13/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/go-winio v0.4.14/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/hcsshim v0.8.6/go.mod h1:Op3hHsoHPAvb6lceZHDtd9OkTew38wNoXnJs8iY7rUg=
