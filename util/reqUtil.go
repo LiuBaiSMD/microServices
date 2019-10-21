@@ -9,6 +9,14 @@ import (
 
 func GetBody(r *http.Request) (map[string]interface{}, error){
 	//将参数解析为 map[string]interface{}型
+	if r.Method=="GET"{
+		r.ParseForm()
+		res := make(map[string]interface{})
+		for k, v := range r.Form{
+			res[k] = v
+		}
+		return res, nil
+	}
 	if r.Method != "POST"{
 		return nil, errors.New("请求类型错误，请检查")
 	}
