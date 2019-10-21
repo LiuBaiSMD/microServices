@@ -9,6 +9,8 @@ import (
 	"reflect"
 	"errors"
 	"time"
+	"strings"
+	"runtime"
 )
 func GetType(c interface{}) string{
 	return reflect.TypeOf(c).String()
@@ -72,4 +74,12 @@ func GetConfig(filePath string)(map[string]interface{}, error){
 func GetToday()string{
 	data := time.Now().Format("2006-01-02")
 	return data
+}
+
+func GetUseFileWithLine(skip int)(string, int){
+	//获取调用此文件的文件名, 行数，通过skip设定层级
+	_, file, line, _ := runtime.Caller(2)
+	fileSplit := strings.Split(file, "/")
+	fileName := fileSplit[len(fileSplit)-1]
+	return fileName, line
 }

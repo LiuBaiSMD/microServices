@@ -1,0 +1,12 @@
+[Info]2019/10/19 18:03:45 handler.go 27 [初始化handler模块!]
+[Info]2019/10/19 18:03:45 main.go 54 [test123]
+[Error Report]2019/10/19 18:03:45 Get http://localhost:8080/errorReport?info=我来看看有没有错误!: dial tcp [::1]:8080: connect: connection refused
+[Error]2019/10/19 18:03:45 main.go 55 [我来看看有没有错误!]
+[Heart]2019/10/19 18:03:55 myLog.go 53 [pong pong pong ...]
+[Heart]2019/10/19 18:04:05 myLog.go 53 [pong pong pong ...]
+[Heart]2019/10/19 18:04:15 myLog.go 53 [pong pong pong ...]
+[Heart]2019/10/19 18:04:25 myLog.go 53 [pong pong pong ...]
+[Heart]2019/10/19 18:04:35 myLog.go 53 [pong pong pong ...]
+[Heart]2019/10/19 18:04:45 myLog.go 53 [pong pong pong ...]
+[Heart]2019/10/19 18:04:55 myLog.go 53 [pong pong pong ...]
+[Heart]2019/10/19 18:05:05 myLog.go 53 [pong pong pong ...]
