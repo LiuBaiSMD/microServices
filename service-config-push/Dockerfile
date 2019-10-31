@@ -4,6 +4,7 @@ WORKDIR /go/src/service-config-push
 
 COPY . .
 
+ENV dockerMode on
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o service-config-push loader.go main.go
 

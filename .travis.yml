@@ -1,3 +1,4 @@
+os: linux
 language: go
 sudo: false
 go:
@@ -7,6 +8,5 @@ env:
 services:
   - docker
 install: true
-before_script:
 script:
   - docker-compose up -d
