@@ -1,0 +1,12 @@
+language: go
+sudo: false
+go:
+- 1.12.x
+env:
+- GO111MODULE=on
+services:
+  - docker
+install: true
+before_script:
+script:
+  - docker-compose up -d
