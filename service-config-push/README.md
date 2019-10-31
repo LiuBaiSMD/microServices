@@ -1,4 +1,3 @@
-<a title="Hits" target="_blank" href="https://github.com/xuyiwenak/consul-config-push"><img src="https://hits.b3log.org/b3log/hits.svg"></a>
 # consul-config-push
 
 单独的推送server推送配置到consul配置中心

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LiuBaiSMD/microServices.svg?branch=master)](https://travis-ci.org/LiuBaiSMD/microServices)
+
 ## microServices说明
 ```markdown
 本项目结合了多个go micro微服务，能够进行配置上传、用户信息管理（redis mysql数据库管理）、
