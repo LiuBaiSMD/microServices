@@ -23,4 +23,4 @@ cache:
     - $HOME/docker
 install: true
 script:
-  - docker-compose up
+  - docker-compose up -d
