@@ -30,7 +30,7 @@ func main() {
 	}
 	// 注册登录接口
 
-	handler.HandlerFromConf(service, "manageFunc.json")
+	handler.BindHandlerFromConf(service, "manageFunc.json")
 
 	if err := service.Run(); err != nil {
 		log.Fatal(err)

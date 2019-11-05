@@ -1,3 +1,6 @@
+//将传入的interf中的方法包装成map[string] HttpWR ，供路由绑定使用
+
+
 package myregistry
 
 import (
@@ -29,6 +32,7 @@ func init(){
 	Register.CrMap = make(ControllerMapsType, 0)
 }
 
+//注册函数，通过反射将handles中的方法，打包成字典存入 Register.FuncRegistry中 key为对应的方法名，value为对应的方法
 func (b* Base)Registery(handles interface{}){
 
 	//创建反射变量，注意这里需要传入ruTest变量的地址；
@@ -51,10 +55,11 @@ func (b* Base)Registery(handles interface{}){
 	fmt.Println("FuncRegistry: ---->", b.FuncRegistry)
 }
 
-func BindUrlHandle(service web.Service, patterm , method string){
+//外部使用此接口，将url与handle绑定，也可以在外部直接绑定，不使用此方法
+func BindUrlHandle(service web.Service, patter , method string){
 	f, ok := Register.FuncRegistry[method]
 	if !ok {
 		panic("绑定的方法未注册！")
 	}
-	service.HandleFunc(patterm,f)
+	service.HandleFunc(patter,f)
 }
