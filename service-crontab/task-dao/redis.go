@@ -53,13 +53,3 @@ func GetRedis() *redis.Client {
 	return client
 }
 
-
-//func initSentinel(redisConfig config.RedisConfig) {
-	//	client = redis.NewFailoverClient(&redis.FailoverOptions{
-	//		MasterName:    redisConfig.GetSentinelConfig().GetMaster(),
-	//		SentinelAddrs: redisConfig.GetSentinelConfig().GetNodes(),
-	//		DB:            redisConfig.GetDBNum(),
-	//		Password:      redisConfig.GetPassword(),
-	//	})
-	//
-	//}

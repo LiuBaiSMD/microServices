@@ -1,0 +1,5 @@
+userlogin:
+  route:  "UserLogin"
+  url: "UserURL"
+getName:
+  route: "GetName"

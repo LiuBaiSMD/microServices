@@ -1,0 +1,10 @@
+{
+  "userlogin":{
+    "func":  "Login",
+    "url": "/user_login"
+  },
+  "testuserlogin":{
+    "func": "TestUserLogin",
+    "url": "/test_user_login"
+  }
+}
