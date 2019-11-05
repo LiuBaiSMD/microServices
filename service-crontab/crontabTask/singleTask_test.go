@@ -6,26 +6,24 @@ import (
 	"fmt"
 )
 func TestAddTask(t *testing.T) {
-
-	//生产端
 	go TimeRun("taskNow", Task1,2,"1", "a", []int{1,2,3})
-
-	//消费端
+	var over chan int
+	over = make(chan int)
 	go func(){
-		endPoint:
-		tickOver := time.NewTicker(time.Second * 10)
+		tickOver := time.NewTicker(time.Second * 13)
 		tick := time.NewTicker(time.Second )
-	for {
-		select{
-		case <- tick.C:
-			RunTaskNow("taskNow")
-		case <- tickOver.C:
-			goto endPoint
+		for {
+			select{
+			case <- tick.C:
+				RunTaskNow("taskNow")
+			case <- tickOver.C:
+				over <- 1
+			}
 		}
-	}
 	}()
-
-	time.Sleep(time.Second * 11)
+	<-over
+	close(over)
+	fmt.Println("over")
 }
 
 func Task1(params ...interface{})([]interface{}, error){
