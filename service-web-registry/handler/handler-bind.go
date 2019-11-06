@@ -19,7 +19,6 @@ func BindHandlerFromConf(service web.Service, configPath string){
 	conf, _ := ReadConfig(configPath)
 	for _,v := range conf{
 		var r rules
-		//r := v.(rules)
 		bv, _ := json.Marshal(v)
 		json.Unmarshal(bv, &r)
 		fmt.Println("url ------> handle  :  ", r.Url, r.Func)

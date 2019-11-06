@@ -1,14 +1,14 @@
 {
   "userlogin":{
-    "func":  "Login",
+    "func":  "LoginTest",
     "url": "/user_login"
   },
   "testuserlogin":{
-    "func": "TestUserLogin",
+    "func": "TestUserLoginTest",
     "url": "/test_user_login"
   },
   "testuserloginError":{
-    "func": "TestUserLogin",
+    "func": "TestUserLoginErrorTest",
     "url": "/test_user_login_error"
   }
 }

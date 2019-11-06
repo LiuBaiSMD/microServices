@@ -16,17 +16,15 @@ func Init(){
 }
 
 func (b* RfAddr)TestUserLogin() myregistry.HttpWR{
-	f := func(w http.ResponseWriter, r *http.Request){
+	return func(w http.ResponseWriter, r *http.Request){
 		log.Log("method:", r.Method) //获取请求的方法
 		log.Log("handlerfunc TestUserLogin")
 	}
-	return f
 }
 
 func (b* RfAddr) Login() myregistry.HttpWR {
-	f := func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		log.Log("method:", r.Method) //获取请求的方法
 		log.Log("handlerfunc Login")
 	}
-	return f
 }
