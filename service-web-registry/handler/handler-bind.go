@@ -10,7 +10,6 @@ import (
 	//"github.com/goinggo/mapstructure"
 )
 
-
 type rules struct{
 	Func string `json:"Func"`
 	Url string `json:"Url"`

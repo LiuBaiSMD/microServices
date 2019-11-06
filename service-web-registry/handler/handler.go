@@ -6,22 +6,14 @@ import (
 	"github.com/micro/go-micro/util/log"
 	"handlerManageTest/myregistry"
 	"net/http"
-	"reflect"
 )
-type ControllerMapsType map[string]reflect.Value
 
 type RfAddr struct {}
 
-type Base struct{
-	crMap ControllerMapsType
-	funcRegistry map[string] myregistry.HttpWR
-}
-
 func Init(){
 	var rfaddr RfAddr
-	myregistry.Register.Registery(&rfaddr)
+	myregistry.Registery(&rfaddr)
 }
-
 
 func (b* RfAddr)TestUserLogin() myregistry.HttpWR{
 	f := func(w http.ResponseWriter, r *http.Request){
