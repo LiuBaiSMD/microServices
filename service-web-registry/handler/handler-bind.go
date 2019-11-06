@@ -6,15 +6,24 @@ import (
 	"fmt"
 	"github.com/micro/go-micro/web"
 	"handlerManageTest/myregistry"
+	"encoding/json"
+	//"github.com/goinggo/mapstructure"
 )
 
+
+type rules struct{
+	Func string `json:"Func"`
+	Url string `json:"Url"`
+}
 //读取配置，将方法与路由绑定在web.Service上
 func BindHandlerFromConf(service web.Service, configPath string){
 	conf, _ := ReadConfig(configPath)
 	for _,v := range conf{
-		fName, _ := GetMapContent(v.(map[string]interface{}), "func")
-		url, _ := GetMapContent(v.(map[string]interface{}), "url")
-		fmt.Println("f ------> url  :  ", fName, url)
-		myregistry.BindUrlHandle(service, url.(string), fName.(string))
+		var r rules
+		//r := v.(rules)
+		bv, _ := json.Marshal(v)
+		json.Unmarshal(bv, &r)
+		fmt.Println("url ------> handle  :  ", r.Url, r.Func)
+		myregistry.BindUrlHandle(service, r.Url, r.Func)
 	}
 }

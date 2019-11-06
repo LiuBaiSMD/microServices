@@ -47,6 +47,10 @@ func (b* Base)Registery(handles interface{}){
 		mName := vft.Method(i).Name
 		b.CrMap[mName] = vf.Method(i)
 		f:= b.CrMap[mName].Call(nil)
+		_, ifOK := b.FuncRegistry[mName]
+		if ifOK {
+			panic("重复注册方法 -----> " + mName)
+		}
 		b.FuncRegistry[mName] = f[0].Interface().(HttpWR)
 	}
 	if len(b.FuncRegistry) == 0{
