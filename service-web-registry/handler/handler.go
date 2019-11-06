@@ -4,7 +4,8 @@ package handler
 
 import (
 	"github.com/micro/go-micro/util/log"
-	"handlerManageTest/myregistry"
+	//"web-registry/myregistry"
+	"github.com/LiuBaiSMD/microServices/util/myregistry"
 	"net/http"
 )
 

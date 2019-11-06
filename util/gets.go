@@ -5,7 +5,6 @@ import (
 	"github.com/micro/go-micro/config/source"
 	"github.com/micro/go-micro/config/source/file"
 	"github.com/micro/go-micro/config/encoder/json"
-	"github.com/micro/go-micro/util/log"
 	"reflect"
 	"errors"
 	"time"
@@ -53,7 +52,6 @@ func GetConfig(filePath string)(map[string]interface{}, error){
 	//从一个文件中读取配置，
 	configPath := filePath
 	e := json.NewEncoder()
-	log.Log(configPath)
 	fileSource := file.NewSource(
 		file.WithPath(configPath),
 		source.WithEncoder(e),

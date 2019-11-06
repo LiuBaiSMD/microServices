@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/micro/go-micro/util/log"
 	"github.com/micro/go-micro/web"
-	"handlerManageTest/handler"
+	"web-registry/handler"
 	//"github.com/gorilla/websocket"
 )
 func main() {

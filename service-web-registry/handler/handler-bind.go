@@ -5,9 +5,9 @@ package handler
 import (
 	"fmt"
 	"github.com/micro/go-micro/web"
-	"handlerManageTest/myregistry"
+	//"web-registry/myregistry"
+	"github.com/LiuBaiSMD/microServices/util/myregistry"
 	"encoding/json"
-	//"github.com/goinggo/mapstructure"
 )
 
 type rules struct{

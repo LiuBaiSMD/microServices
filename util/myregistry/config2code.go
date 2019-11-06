@@ -4,12 +4,8 @@ package myregistry
 
 import (
 	baseJson "encoding/json"
-	"errors"
 	"fmt"
-	"github.com/micro/go-micro/config"
-	"github.com/micro/go-micro/config/encoder/json"
-	"github.com/micro/go-micro/config/source"
-	"github.com/micro/go-micro/config/source/file"
+	"github.com/LiuBaiSMD/microServices/util"
 	"os"
 	"path"
 )
@@ -19,14 +15,18 @@ package %s
 
 import (
 	"net/http"
+	"github.com/LiuBaiSMD/microServices/util/myregistry"
 )
 
-type RfAddr struct {}
 
-func Init(){
-	var rfaddr RfAddr
-	myregistry.Registery(&rfaddr)
-}
+//>>>>>>>>>>如第一次使用请取消注释下方代码<<<<<<<<<<<<
+
+//type RfAddr struct {}
+//
+//func Init(){
+//	var rfaddr RfAddr
+//	myregistry.Registery(&rfaddr)
+//}
 `
 
 var handleStr = `
@@ -34,25 +34,27 @@ func (b* RfAddr)%s() myregistry.HttpWR{
 	return func(w http.ResponseWriter, r *http.Request){
 		// your handle logic todo ...
 	}
-}`
+}
+`
 
 type rules struct{
 	Func string `json:"Func"`
 	Url string `json:"Url"`
 }
 
+//dst请配置绝对路径
 func CodeFactory(configPath, dst string){
 	dir := path.Dir(dst)
-	if err := CheckDirOrCreate(dir);err!=nil{
+	if err := util.CheckDirOrCreate(dir);err!=nil{
 		panic(err)
 	}
 	pkgName := path.Base(dir)
 	var thisHeader = fmt.Sprintf(headStr, pkgName)
-	conf, _ := ReadConfig(configPath)
+	conf, _ := util.GetConfig(configPath)
 	createPath := dst
-	ifExist, _ := PathExists(createPath)
+	ifExist, _ := util.CheckPathExists(createPath)
 	var f *os.File
-	f, _ = os.OpenFile(createPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	f, _ = os.OpenFile(createPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0755)
 	if !ifExist{
 		fmt.Println("没有我来造")
 		if _, err :=f.Write([]byte(thisHeader)); err !=nil{
@@ -72,74 +74,3 @@ func CodeFactory(configPath, dst string){
 		}
 	}
 	}
-
-
-
-//获取字典中的值
-func GetMapContent(m map[string]interface{}, path ...string) (interface{}, error){
-	//本接口将获取一个map中，按path路径取值，返回一个interface
-	var content interface{}
-	var ok bool
-	l := len(path)
-	if l ==0 || (l == 1 && path[0]==""){  //当没有填入
-		return m, nil
-	}
-	for k, v:= range path{
-		if k ==l-1{
-			content, ok = m[v]
-			if !ok{
-				return nil, errors.New(" 配置读取错误---> 	" + v)
-			}
-			return content,nil
-		}
-		if m, ok = m[v].(map[string]interface{}); !ok{
-			return nil, errors.New(" 配置读取错误---> 	" + v)
-		}
-	}
-	return nil, errors.New("missing map!")
-}
-
-//指定文件中的配置
-func ReadConfig(filePath string)(map[string]interface{}, error){
-	configPath := filePath
-	e := json.NewEncoder()
-	fileSource := file.NewSource(
-		file.WithPath(configPath),
-		source.WithEncoder(e),
-	)
-	conf := config.NewConfig()
-	// 加载micro.yml文件
-	if err := conf.Load(fileSource); err != nil {
-		panic(err)
-	}
-	routes := make(map[string]interface{})
-	err := conf.Scan(&routes)
-	if err != nil{
-		return nil, err
-	}
-	return routes, nil
-}
-
-func PathExists(path string) (bool, error) {
-	_, err := os.Stat(path)
-	if err == nil {
-		return true, nil
-	}
-	if os.IsNotExist(err) {
-		return false, nil
-	}
-	return false, err
-}
-
-//检查一个dir路径，没有则会创建
-func CheckDirOrCreate(dirPath string) error{
-	if ifExist,err :=PathExists(dirPath); err != nil{
-		return err
-	}else if !ifExist{
-		err1 := os.MkdirAll(dirPath, 0777)
-		if err1!=nil{
-			return err1
-		}
-	}
-	return nil
-}

@@ -67,6 +67,7 @@ func CheckReqAllowed(rMethod string, AllowedMethods ...string)bool{
 	return false
 }
 
+//检查路径是否存在
 func CheckPathExists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {
@@ -76,4 +77,17 @@ func CheckPathExists(path string) (bool, error) {
 		return false, nil
 	}
 	return false, err
+}
+
+//检查一个dir路径，没有则会创建
+func CheckDirOrCreate(dirPath string) error{
+	if ifExist,err := CheckPathExists(dirPath); err != nil{
+		return err
+	}else if !ifExist{
+		err1 := os.MkdirAll(dirPath, 0777)
+		if err1!=nil{
+			return err1
+		}
+	}
+	return nil
 }

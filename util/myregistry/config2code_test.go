@@ -1,7 +1,18 @@
 package myregistry
 
-import "testing"
+import (
+	"fmt"
+	"os"
+	"testing"
+)
 
 func TestCodeFactory(t *testing.T){
-	CodeFactory("/Users/tugame/gitPRJ/microServices/service-web-registry/manageFuncTest.json", "/Users/tugame/gitPRJ/microServices/service-web-registry/handler/test.go")
+	pwd, err := os.Getwd()
+	if err!=nil{
+		panic(nil)
+	}
+	dst := pwd + "/testmyregistry/test.go"
+	fmt.Println("dst: ", dst)
+	CodeFactory("config-test.json", pwd + "/testmyregistry/test.go")
+	os.RemoveAll(pwd + "/testmyregistry")
 }
