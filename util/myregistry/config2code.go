@@ -56,7 +56,6 @@ func CodeFactory(configPath, dst string){
 	var f *os.File
 	f, _ = os.OpenFile(createPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0755)
 	if !ifExist{
-		fmt.Println("没有我来造")
 		if _, err :=f.Write([]byte(thisHeader)); err !=nil{
 			panic(err)
 		}
