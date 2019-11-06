@@ -11,6 +11,8 @@ github.com/LiuBaiSMD/microServices/util v0.0.0-20191106081009-425944ca2367 h1:hT
 github.com/LiuBaiSMD/microServices/util v0.0.0-20191106081009-425944ca2367/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
 github.com/LiuBaiSMD/microServices/util v0.0.0-20191106085047-e418879698fa h1:pXU7/QX33bitS4qrKM1LCEF6z27td4AuqqEYMJg9XDo=
 github.com/LiuBaiSMD/microServices/util v0.0.0-20191106085047-e418879698fa/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
+github.com/LiuBaiSMD/microServices/util v0.0.0-20191106085449-26202fb0f9d1 h1:el3WwXstnF68smSrjVvIaKwKXJBrT1YpYJKFAR9nqrg=
+github.com/LiuBaiSMD/microServices/util v0.0.0-20191106085449-26202fb0f9d1/go.mod h1:SKg6wOmK8Ys7vXrHtssdiX5axn5w8i+zqhWAI6HQmDQ=
 github.com/Microsoft/go-winio v0.4.13/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/go-winio v0.4.14/go.mod h1:qXqCSQ3Xa7+6tgxaGTIe4Kpcdsi+P8jBhyzoq1bpyYA=
 github.com/Microsoft/hcsshim v0.8.6/go.mod h1:Op3hHsoHPAvb6lceZHDtd9OkTew38wNoXnJs8iY7rUg=
