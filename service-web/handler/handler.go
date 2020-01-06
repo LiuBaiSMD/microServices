@@ -40,6 +40,9 @@ func Init(){
 }
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
 	log.Log("method:", r.Method) //获取请求的方法
 	if r.Method == "GET" {
 		log.Logf("加载登录界面")
@@ -48,10 +51,11 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 		log.Logf("加载完毕")
 		return
 	}
-	t := template.New("test")
+	//t := template.New("test")
 	//请求的是登陆数据，那么执行登陆的逻辑判断
 	r.ParseForm()
 	mapdata, err := util.GetBody(r)
+	log.Log("body: ", mapdata)
 	if err != nil{
 		fmt.Fprintln(w, err.Error())
 		return
@@ -74,12 +78,16 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	userToken := dao.CreateUserIdToken(name)
 	dao.SetRediString(name, userToken, time.Second * 100 )
-	t, _ = template.ParseFiles("html/websocket/index.html")
+	//t, _ = template.ParseFiles("html/websocket/index.html")
 	log.Log("token:		", userToken)
-	t.Execute(w, userToken)
+	//t.Execute(w, userToken)
+	fmt.Fprint(w, "success")
 }
 
 func Register(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
 	fmt.Println("method:", r.Method) //获取请求的方法
 	if r.Method == "GET" {
 		t, _ := template.ParseFiles("html/register.html")
@@ -123,7 +131,8 @@ func Register(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintln(w, err.Error())
 			return
 		}
-		http.Redirect(w, r, "/userlogin/", http.StatusFound)
+		fmt.Fprint(w, "success")
+		//http.Redirect(w, r, "/userlogin/", http.StatusFound)
 	}
 }
 

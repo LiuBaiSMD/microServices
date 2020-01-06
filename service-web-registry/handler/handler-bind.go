@@ -5,7 +5,6 @@ package handler
 import (
 	"fmt"
 	"github.com/micro/go-micro/web"
-	//"web-registry/myregistry"
 	"github.com/LiuBaiSMD/microServices/util/myregistry"
 	"encoding/json"
 )

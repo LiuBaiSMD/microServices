@@ -34,7 +34,7 @@ func main() {
 		web.Name("websocket"),
 		web.Version("latest"),
 		web.Registry(micReg),
-		web.Address(":8080"),
+		web.Address(":8081"),
 	)
 
 	// 初始化服务

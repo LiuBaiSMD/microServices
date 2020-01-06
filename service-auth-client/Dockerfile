@@ -6,6 +6,7 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o service-auth-client .
 
+
 FROM alpine:3.9 as prod
 
 WORKDIR /root/service-auth-client
