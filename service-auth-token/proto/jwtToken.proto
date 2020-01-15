@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service TokenCreator {
+    rpc GetToken(TokenRequest) returns (TokenResponse) {}
+}
+
+message TokenRequest {
+    string name = 1;
+    string uid = 2;
+}
+
+message TokenResponse {
+    string token = 2;
+}
