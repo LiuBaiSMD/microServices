@@ -14,7 +14,10 @@
         </style>
 </head>
     <body>
-        <div id="main">
+    <audio controls autoplay  loop id="audios">
+        <source src="js/lq.mp3" type="audio/mp3" />
+    </audio>
+    <div id="main">
              <div id="wrap">
                 <div id="text">
                     <div id="code"> <font color="#FF0000"> <span class="say">亲爱的谭小姐，虽然看起来有点肉麻</span><br>
@@ -42,9 +45,8 @@
     </script>
 
     <script>
-    (function(){
+        (function(){
         var canvas = $('#canvas');
-		
         if (!canvas[0].getContext) {
             $("#error").show();
             return false;        }
