@@ -1,4 +1,44 @@
+package main
+
+import (
+        "bytes"
+        "fmt"
+        "html/template"
+        "io"
+        "log"
+        "math/rand"
+        "net/http"
+        "time"
+)
+
+var barkUrl = "https://api.day.app/V8bF9xQkVFTeV5otqvCEbT/"
+var testBarkUrl = "https://api.day.app/rpiG6xZWiFxYHh9jg9fdZV/"
+
+var notifyEatList = []string{"老婆老婆，吃饭了~","老婆，不要饿到肚子，吃饭了~", "老婆，快吃饭啦~"}
+var notifyMorningList = []string{"早安老婆~","老婆，起床时间到了，早餐要记得次~", "老婆，吃饭饭了~"}
+var notifyNightList = []string{"晚安老婆~","老婆，起准备睡觉啦~", "老婆，不要熬到太晚~"}
+var notifyXibaoList = []string{"老婆mua，选台子辣","老婆，老gun在抢细胞台了~", "老婆，准备抢细胞台辣"}
+
+func main() {
+
+//      go notify(17, 35, notifyEatList)
+//      go notify(8, 8, notifyMorningList)
+//      go notify(23, 58, notifyNightList)
+        go notify(22, 12, notifyXibaoList)
+        // 设置路由，如果访问/，则调用index方法
+        http.Handle("/css/", http.FileServer(http.Dir("html")))
+        http.Handle("/js/", http.FileServer(http.Dir("html")))
+        http.Handle("/flac/", http.FileServer(http.Dir("html")))
+        http.HandleFunc("/", love)
+
+        // 启动web服务，监听9090端口
+        err := http.ListenAndServe(":8081", nil)
+        if err != nil {
+                log.Fatal("ListenAndServe: ", err)
+        }
+
 }
+
 
 func eatNotify(){
         for{
