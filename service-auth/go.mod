@@ -10,5 +10,5 @@ require (
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/micro/cli v0.2.0
 	github.com/micro/go-micro v1.10.0
-	github.com/nats-io/nats-server/v2 v2.1.0 // indirect
+	github.com/nats-io/nats-server/v2 v2.7.4 // indirect
 )
